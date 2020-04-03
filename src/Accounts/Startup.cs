@@ -1,35 +1,48 @@
-﻿using MassTransit;
+﻿using System.Reflection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Accounts.Common.Configuration;
+using Autofac;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Swisschain.Sdk.Server.Common;
 
 namespace Accounts
 {
     public sealed class Startup : SwisschainStartup<AppConfig>
     {
-        public Startup(IConfiguration configuration) : base(configuration)
+        public Startup(IConfiguration configuration)
+            : base(configuration)
         {
+            AddJwtAuth(Config.Jwt.Secret, "exchange.swisschain.io");
         }
 
         protected override void ConfigureServicesExt(IServiceCollection services)
         {
-            base.ConfigureServicesExt(services);
-
-            services.AddMassTransit(x =>
-            {
-                x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
+            services
+                //.AddAutoMapper(typeof(AutoMapperProfile))
+                .AddControllersWithViews()
+                .AddFluentValidation(options =>
                 {
-                    cfg.Host(Config.RabbitMq.HostUrl, host =>
-                    {
-                        host.Username(Config.RabbitMq.Username);
-                        host.Password(Config.RabbitMq.Password);
-                    });
+                    ValidatorOptions.CascadeMode = CascadeMode.StopOnFirstFailure;
+                    options.RegisterValidatorsFromAssembly(Assembly.GetEntryAssembly());
+                });
+        }
 
-                    cfg.SetLoggerFactory(provider.GetRequiredService<ILoggerFactory>());
-                }));
-            });
+        protected override void ConfigureExt(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            app.UseAuthentication();
+            app.UseAuthorization();
+
+            //app.ApplicationServices.GetRequiredService<AutoMapper.IConfigurationProvider>()
+            //    .AssertConfigurationIsValid();
+        }
+
+        protected override void ConfigureContainerExt(ContainerBuilder builder)
+        {
+            builder.RegisterModule(new AutofacModule(Config));
         }
     }
 }
