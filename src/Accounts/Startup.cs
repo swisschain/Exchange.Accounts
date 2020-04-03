@@ -1,18 +1,8 @@
-﻿using System;
-using System.IO;
-using System.Reflection;
-using MassTransit;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Routing;
+﻿using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Accounts.Common.Configuration;
-using Accounts.Common.Domain.AppFeatureExample;
-using Accounts.Common.HostedServices;
-using Accounts.Common.Persistence;
-using Accounts.GrpcServices;
-using Swashbuckle.AspNetCore.SwaggerGen;
 using Swisschain.Sdk.Server.Common;
 
 namespace Accounts
@@ -27,14 +17,8 @@ namespace Accounts
         {
             base.ConfigureServicesExt(services);
 
-            services.AddPersistence(Config.Db.ConnectionString);
-            services.AddAppFeatureExample();
-
             services.AddMassTransit(x =>
             {
-                // TODO: Register commands recipient endpoints. It's just an example.
-                EndpointConvention.Map<ExecuteSomething>(new Uri("queue:exchange-accounts-something-execution"));
-
                 x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
                 {
                     cfg.Host(Config.RabbitMq.HostUrl, host =>
@@ -45,16 +29,7 @@ namespace Accounts
 
                     cfg.SetLoggerFactory(provider.GetRequiredService<ILoggerFactory>());
                 }));
-
-                services.AddHostedService<BusHost>();
             });
-        }
-
-        protected override void RegisterEndpoints(IEndpointRouteBuilder endpoints)
-        {
-            base.RegisterEndpoints(endpoints);
-
-            endpoints.MapGrpcService<MonitoringService>();
         }
     }
 }

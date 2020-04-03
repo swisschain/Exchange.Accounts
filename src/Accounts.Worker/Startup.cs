@@ -5,10 +5,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Accounts.Common.Configuration;
-using Accounts.Common.Domain.AppFeatureExample;
-using Accounts.Common.HostedServices;
-using Accounts.Common.Persistence;
-using Accounts.Worker.MessageConsumers;
 using Swisschain.Sdk.Server.Common;
 
 namespace Accounts.Worker
@@ -24,9 +20,6 @@ namespace Accounts.Worker
             base.ConfigureServicesExt(services);
 
             services.AddHttpClient();
-            services.AddPersistence(Config.Db.ConnectionString);
-            services.AddAppFeatureExample();
-            services.AddMessageConsumers();
 
             services.AddMassTransit(x =>
             {
@@ -45,15 +38,7 @@ namespace Accounts.Worker
                             TimeSpan.FromMilliseconds(100)));
 
                     cfg.SetLoggerFactory(provider.GetRequiredService<ILoggerFactory>());
-
-                    // TODO: Define your receive endpoints. It's just an example:
-                    cfg.ReceiveEndpoint("exchange-accounts-something-execution", e =>
-                    {
-                        e.Consumer(provider.GetRequiredService<ExecuteSomethingConsumer>);
-                    });
                 }));
-
-                services.AddHostedService<BusHost>();
             });
         }
     }

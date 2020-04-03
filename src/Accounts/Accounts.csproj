@@ -31,7 +31,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Accounts.Common\Accounts.Common.csproj" />
-    <ProjectReference Include="..\Accounts.ApiContract\Accounts.ApiContract.csproj" />
   </ItemGroup>
 
   <ItemGroup>
