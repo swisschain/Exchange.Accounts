@@ -25,12 +25,6 @@ namespace Accounts.Worker
             {
                 x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
                 {
-                    cfg.Host(Config.RabbitMq.HostUrl, host =>
-                    {
-                        host.Username(Config.RabbitMq.Username);
-                        host.Password(Config.RabbitMq.Password);
-                    });
-
                     cfg.UseMessageRetry(y =>
                         y.Exponential(5,
                             TimeSpan.FromMilliseconds(100),
