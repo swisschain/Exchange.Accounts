@@ -2,12 +2,16 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Accounts.Common.Configuration;
+using Accounts.Repositories;
+using Accounts.Repositories.Context;
 using Autofac;
+using AutoMapper;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Swisschain.Sdk.Server.Common;
+using AutofacModule = Accounts.Repositories.AutofacModule;
 
 namespace Accounts
 {
@@ -22,7 +26,7 @@ namespace Accounts
         protected override void ConfigureServicesExt(IServiceCollection services)
         {
             services
-                //.AddAutoMapper(typeof(AutoMapperProfile))
+                .AddAutoMapper(typeof(AutoMapperProfile))
                 .AddControllersWithViews()
                 .AddFluentValidation(options =>
                 {
@@ -33,15 +37,18 @@ namespace Accounts
 
         protected override void ConfigureExt(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseAuthentication();
             app.UseAuthorization();
 
-            //app.ApplicationServices.GetRequiredService<AutoMapper.IConfigurationProvider>()
-            //    .AssertConfigurationIsValid();
+            app.ApplicationServices.GetRequiredService<AutoMapper.IConfigurationProvider>()
+                .AssertConfigurationIsValid();
+
+            app.ApplicationServices.GetRequiredService<ConnectionFactory>()
+                .EnsureMigration();
         }
 
         protected override void ConfigureContainerExt(ContainerBuilder builder)
         {
+            builder.RegisterModule(new Services.AutofacModule(Config));
             builder.RegisterModule(new AutofacModule(Config));
         }
     }

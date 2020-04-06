@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using Accounts.Common.Domain.Entities;
 
-namespace Accounts.Common.Domain.Services
+namespace Accounts.Common.Domain.Repositories
 {
-    public interface IAccountService
+    public interface IAccountRepository
     {
         Task CreateAsync(Account account);
 

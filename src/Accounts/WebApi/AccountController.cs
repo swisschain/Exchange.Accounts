@@ -1,4 +1,5 @@
-﻿using Accounts.Common.Domain.Entities;
+﻿using System.Threading.Tasks;
+using Accounts.Common.Domain.Entities;
 using Accounts.Common.Domain.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -20,18 +21,18 @@ namespace Accounts.WebApi
 
         [HttpPost]
         [ProducesResponseType(typeof(Account), StatusCodes.Status200OK)]
-        public IActionResult CreateAsync(Account account)
+        public async Task<IActionResult> CreateAsync(Account account)
         {
-            _accountService.Create(account);
+            await _accountService.CreateAsync(account);
 
             return Ok(account);
         }
 
         [HttpGet]
         [ProducesResponseType(typeof(Account[]), StatusCodes.Status200OK)]
-        public IActionResult GetAllAsync()
+        public async Task<IActionResult> GetAllAsync()
         {
-            var accounts = _accountService.GetAll();
+            var accounts = await _accountService.GetAllAsync();
 
             return Ok(accounts);
         }

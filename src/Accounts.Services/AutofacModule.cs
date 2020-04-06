@@ -1,9 +1,8 @@
 ﻿using Accounts.Common.Configuration;
 using Accounts.Common.Domain.Services;
-using Accounts.Common.Services;
 using Autofac;
 
-namespace Accounts
+namespace Accounts.Services
 {
     public class AutofacModule : Module
     {
