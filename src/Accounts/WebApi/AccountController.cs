@@ -29,7 +29,7 @@ namespace Accounts.WebApi
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(AccountRequestMany), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Paginated<Account, string>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ModelStateDictionaryErrorResponse), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetManyAsync([FromQuery] AccountRequestMany request)
         {
