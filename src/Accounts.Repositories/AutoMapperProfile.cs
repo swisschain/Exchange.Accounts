@@ -8,7 +8,7 @@ namespace Accounts.Repositories
     {
         public AutoMapperProfile()
         {
-            CreateMap<Account, AccountEntity>(MemberList.Source);
+            CreateMap<Account, AccountEntity>(MemberList.Destination);
             CreateMap<AccountEntity, Account>(MemberList.Destination);
         }
     }

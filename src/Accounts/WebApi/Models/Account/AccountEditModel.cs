@@ -11,8 +11,13 @@
         public string Id { get; set; }
 
         /// <summary>
-        /// Is account active
+        /// Account name
         /// </summary>
-        public bool IsEnabled { get; set; }
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Is account disabled
+        /// </summary>
+        public bool IsDisabled { get; set; }
     }
 }

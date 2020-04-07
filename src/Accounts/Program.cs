@@ -22,8 +22,7 @@ namespace Accounts
             var remoteSettingsConfig = ApplicationEnvironment.Config.Get<RemoteSettingsConfig>();
 
             using var loggerFactory = LogConfigurator.Configure(
-                "Exchange", 
-                ApplicationEnvironment.Config["SeqUrl"],
+                "Exchange",
                 remoteSettingsConfig.RemoteSettingsUrls ?? Array.Empty<string>());
             
             var logger = loggerFactory.CreateLogger<Program>();

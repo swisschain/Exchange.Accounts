@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using Accounts.Common.Domain.Entities;
 
@@ -6,8 +7,17 @@ namespace Accounts.Common.Domain.Repositories
 {
     public interface IAccountRepository
     {
+        Task<IReadOnlyList<Account>> GetAllAsync(string brokerId);
+
+        Task<IReadOnlyList<Account>> GetAllAsync(string brokerId, string accountId, string name, bool isDisabled = false,
+            ListSortDirection sortOrder = ListSortDirection.Ascending, string cursor = null, int limit = 50);
+
+        Task<Account> GetByIdAsync(string accountId);
+
         Task<Account> InsertAsync(Account account);
 
-        Task<IReadOnlyList<Account>> GetAllAsync(string brokerId);
+        Task<Account> UpdateAsync(Account account);
+
+        Task DeleteAsync(string accountId);
     }
 }

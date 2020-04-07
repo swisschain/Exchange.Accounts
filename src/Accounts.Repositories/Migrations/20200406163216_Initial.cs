@@ -17,8 +17,10 @@ namespace Accounts.Repositories.Migrations
                 {
                     id = table.Column<string>(type: "varchar(36)", nullable: false),
                     broker_id = table.Column<string>(type: "varchar(36)", nullable: false),
-                    is_enabled = table.Column<bool>(nullable: false),
-                    created = table.Column<DateTimeOffset>(nullable: false)
+                    name = table.Column<string>(type: "varchar(36)", nullable: false),
+                    is_disabled = table.Column<bool>(nullable: false),
+                    created = table.Column<DateTimeOffset>(nullable: false),
+                    modified = table.Column<DateTimeOffset>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -32,10 +34,16 @@ namespace Accounts.Repositories.Migrations
                 column: "broker_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_accounts_is_enabled",
+                name: "IX_accounts_is_disabled",
                 schema: "accounts",
                 table: "accounts",
-                column: "is_enabled");
+                column: "is_disabled");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_accounts_name",
+                schema: "accounts",
+                table: "accounts",
+                column: "name");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

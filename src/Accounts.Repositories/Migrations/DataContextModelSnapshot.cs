@@ -31,6 +31,11 @@ namespace Accounts.Repositories.Migrations
                         .HasColumnName("broker_id")
                         .HasColumnType("varchar(36)");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnName("name")
+                        .HasColumnType("varchar(36)");
+
                     b.Property<DateTimeOffset>("Created")
                         .HasColumnName("created")
                         .HasColumnType("timestamp with time zone");

@@ -25,7 +25,7 @@ namespace Accounts
         protected override void ConfigureServicesExt(IServiceCollection services)
         {
             services
-                .AddAutoMapper(typeof(AutoMapperProfile))
+                .AddAutoMapper(typeof(AutoMapperProfile), typeof(Repositories.AutoMapperProfile))
                 .AddControllersWithViews()
                 .AddFluentValidation(options =>
                 {

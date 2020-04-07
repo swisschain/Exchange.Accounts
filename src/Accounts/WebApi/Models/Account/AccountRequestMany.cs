@@ -1,11 +1,8 @@
-﻿using System;
+﻿using Swisschain.Sdk.Server.WebApi.Pagination;
 
 namespace Accounts.WebApi.Models.Account
 {
-    /// <summary>
-    /// Represents account
-    /// </summary>
-    public class AccountModel
+    public class AccountRequestMany : PaginationRequest<string>
     {
         /// <summary>
         /// Account identifier
@@ -21,10 +18,5 @@ namespace Accounts.WebApi.Models.Account
         /// Is account disabled
         /// </summary>
         public bool IsDisabled { get; set; }
-
-        /// <summary>
-        /// Creation timestamp
-        /// </summary>
-        public DateTimeOffset Created { get; set; }
     }
 }

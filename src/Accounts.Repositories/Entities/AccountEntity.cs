@@ -15,10 +15,17 @@ namespace Accounts.Repositories.Entities
         [Column("broker_id", TypeName = "varchar(36)")]
         public string BrokerId { get; set; }
 
-        [Column("is_enabled")]
-        public bool IsEnabled { get; set; }
+        [Required]
+        [Column("name", TypeName = "varchar(36)")]
+        public string Name { get; set; }
+
+        [Column("is_disabled")]
+        public bool IsDisabled { get; set; }
 
         [Column("created")]
         public DateTimeOffset Created { get; set; }
+
+        [Column("modified")]
+        public DateTime Modified { get; set; }
     }
 }

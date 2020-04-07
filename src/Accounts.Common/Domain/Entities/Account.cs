@@ -18,13 +18,23 @@ namespace Accounts.Common.Domain.Entities
         public string BrokerId { get; set; }
 
         /// <summary>
-        /// Is account active
+        /// Account name
         /// </summary>
-        public bool IsEnabled { get; set; }
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Is account disabled
+        /// </summary>
+        public bool IsDisabled { get; set; }
 
         /// <summary>
         /// Creation timestamp
         /// </summary>
         public DateTimeOffset Created { get; set; }
+
+        /// <summary>
+        /// The last update date and time.
+        /// </summary>
+        public DateTime Modified { get; set; }
     }
 }
