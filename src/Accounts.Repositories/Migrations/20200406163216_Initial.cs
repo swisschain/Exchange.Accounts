@@ -30,6 +30,12 @@ namespace Accounts.Repositories.Migrations
                 schema: "accounts",
                 table: "accounts",
                 column: "broker_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_accounts_is_enabled",
+                schema: "accounts",
+                table: "accounts",
+                column: "is_enabled");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

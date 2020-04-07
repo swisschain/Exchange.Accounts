@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Accounts.Common.Domain.Entities;
 using Accounts.Common.Domain.Repositories;
@@ -21,18 +22,19 @@ namespace Accounts.Repositories
             _mapper = mapper;
         }
 
-        public async Task<IReadOnlyList<Account>> GetAllAsync()
+        public async Task<IReadOnlyList<Account>> GetAllAsync(string brokerId)
         {
             using (var context = _connectionFactory.CreateDataContext())
             {
                 var entities = await context.Accounts
+                    .Where(x => x.BrokerId == brokerId)
                     .ToListAsync();
 
                 return _mapper.Map<List<Account>>(entities);
             }
         }
 
-        public async Task CreateAsync(Account account)
+        public async Task<Account> InsertAsync(Account account)
         {
             account.Created = DateTimeOffset.UtcNow;
 
@@ -43,6 +45,10 @@ namespace Accounts.Repositories
                 context.Accounts.Add(entity);
 
                 await context.SaveChangesAsync();
+
+                var result = _mapper.Map<Account>(entity);
+
+                return result;
             }
         }
     }

@@ -6,8 +6,8 @@ namespace Accounts.Common.Domain.Repositories
 {
     public interface IAccountRepository
     {
-        Task CreateAsync(Account account);
+        Task<Account> InsertAsync(Account account);
 
-        Task<IReadOnlyList<Account>> GetAllAsync();
+        Task<IReadOnlyList<Account>> GetAllAsync(string brokerId);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Accounts.Common.Domain.Entities;
 using Accounts.Common.Domain.Repositories;
@@ -18,14 +19,16 @@ namespace Accounts.Services
             _logger = logger;
         }
 
-        public Task CreateAsync(Account account)
+        public Task<Account> CreateAsync(Account account)
         {
-            return _accountRepository.CreateAsync(account);
+            account.Id = Guid.NewGuid().ToString();
+
+            return _accountRepository.InsertAsync(account);
         }
 
-        public Task<IReadOnlyList<Account>> GetAllAsync()
+        public Task<IReadOnlyList<Account>> GetAllAsync(string brokerId)
         {
-            return _accountRepository.GetAllAsync();
+            return _accountRepository.GetAllAsync(brokerId);
         }
     }
 }

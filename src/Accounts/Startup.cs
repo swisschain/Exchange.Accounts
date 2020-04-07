@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Accounts.Common.Configuration;
-using Accounts.Repositories;
 using Accounts.Repositories.Context;
 using Autofac;
 using AutoMapper;

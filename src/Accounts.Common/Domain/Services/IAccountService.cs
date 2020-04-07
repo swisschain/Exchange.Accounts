@@ -6,8 +6,8 @@ namespace Accounts.Common.Domain.Services
 {
     public interface IAccountService
     {
-        Task CreateAsync(Account account);
+        Task<Account> CreateAsync(Account account);
 
-        Task<IReadOnlyList<Account>> GetAllAsync();
+        Task<IReadOnlyList<Account>> GetAllAsync(string brokerId);
     }
 }
