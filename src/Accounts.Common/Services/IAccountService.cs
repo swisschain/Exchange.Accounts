@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
-using Accounts.Common.Domain.Entities;
+using Accounts.Domain.Entities;
 
-namespace Accounts.Common.Domain.Services
+namespace Accounts.Domain.Services
 {
     public interface IAccountService
     {

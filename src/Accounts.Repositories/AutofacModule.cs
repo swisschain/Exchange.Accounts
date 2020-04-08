@@ -1,5 +1,5 @@
 ﻿using Accounts.Common.Configuration;
-using Accounts.Common.Domain.Repositories;
+using Accounts.Domain.Repositories;
 using Accounts.Repositories.Context;
 using Autofac;
 

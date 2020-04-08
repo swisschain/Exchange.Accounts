@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
-using Accounts.Common.Domain.Entities;
-using Accounts.Common.Domain.Repositories;
-using Accounts.Common.Domain.Services;
+using Accounts.Domain.Entities;
+using Accounts.Domain.Repositories;
+using Accounts.Domain.Services;
 using Microsoft.Extensions.Logging;
 
 namespace Accounts.Services

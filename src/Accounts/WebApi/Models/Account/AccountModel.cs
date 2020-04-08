@@ -3,28 +3,33 @@
 namespace Accounts.WebApi.Models.Account
 {
     /// <summary>
-    /// Represents account
+    /// Represents account.
     /// </summary>
     public class AccountModel
     {
         /// <summary>
-        /// Account identifier
+        /// Account identifier.
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// Account name
+        /// Account name.
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// Is account disabled
+        /// Is account disabled.
         /// </summary>
         public bool IsDisabled { get; set; }
 
         /// <summary>
-        /// Creation timestamp
+        /// Creation timestamp.
         /// </summary>
         public DateTimeOffset Created { get; set; }
+
+        /// <summary>
+        /// The last update date and time.
+        /// </summary>
+        public DateTime Modified { get; set; }
     }
 }

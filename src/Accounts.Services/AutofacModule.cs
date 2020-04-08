@@ -1,5 +1,5 @@
 ﻿using Accounts.Common.Configuration;
-using Accounts.Common.Domain.Services;
+using Accounts.Domain.Services;
 using Autofac;
 
 namespace Accounts.Services

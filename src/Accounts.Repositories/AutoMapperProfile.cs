@@ -1,4 +1,4 @@
-﻿using Accounts.Common.Domain.Entities;
+﻿using Accounts.Domain.Entities;
 using Accounts.Repositories.Entities;
 using AutoMapper;
 

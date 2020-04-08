@@ -1,34 +1,34 @@
 ﻿using System;
 
-namespace Accounts.Common.Domain.Entities
+namespace Accounts.Domain.Entities
 {
     /// <summary>
-    /// Represents account
+    /// Represents account.
     /// </summary>
     public class Account
     {
         /// <summary>
-        /// Account identifier
+        /// Account identifier.
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// Broker identifier
+        /// Broker identifier.
         /// </summary>
         public string BrokerId { get; set; }
 
         /// <summary>
-        /// Account name
+        /// Account name.
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// Is account disabled
+        /// Is account disabled.
         /// </summary>
         public bool IsDisabled { get; set; }
 
         /// <summary>
-        /// Creation timestamp
+        /// Creation timestamp.
         /// </summary>
         public DateTimeOffset Created { get; set; }
 

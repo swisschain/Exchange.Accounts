@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
-using Accounts.Common.Domain.Entities;
-using Accounts.Common.Domain.Services;
+using Accounts.Domain.Entities;
+using Accounts.Domain.Services;
 using Accounts.WebApi.Models.Account;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
