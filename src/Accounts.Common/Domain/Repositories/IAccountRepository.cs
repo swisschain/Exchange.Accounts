@@ -9,7 +9,7 @@ namespace Accounts.Common.Domain.Repositories
     {
         Task<IReadOnlyList<Account>> GetAllAsync(string brokerId);
 
-        Task<IReadOnlyList<Account>> GetAllAsync(string brokerId, string accountId, string name, bool isDisabled = false,
+        Task<IReadOnlyList<Account>> GetAllAsync(string brokerId, string accountId, string name, bool? isDisabled,
             ListSortDirection sortOrder = ListSortDirection.Ascending, string cursor = null, int limit = 50);
 
         Task<Account> GetByIdAsync(string accountId);

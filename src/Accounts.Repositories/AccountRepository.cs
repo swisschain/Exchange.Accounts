@@ -35,7 +35,7 @@ namespace Accounts.Repositories
             }
         }
         
-        public async Task<IReadOnlyList<Account>> GetAllAsync(string brokerId, string accountId, string name, bool isDisabled = false,
+        public async Task<IReadOnlyList<Account>> GetAllAsync(string brokerId, string accountId, string name, bool? isDisabled,
             ListSortDirection sortOrder = ListSortDirection.Ascending, string cursor = null, int limit = 50)
         {
             using (var context = _connectionFactory.CreateDataContext())
@@ -50,7 +50,8 @@ namespace Accounts.Repositories
                 if (!string.IsNullOrEmpty(name))
                     query = query.Where(x => x.Name.Contains(name, StringComparison.InvariantCultureIgnoreCase));
 
-                query = query.Where(x => x.IsDisabled == isDisabled);
+                if (isDisabled.HasValue)
+                    query = query.Where(x => x.IsDisabled == isDisabled.Value);
 
                 if (sortOrder == ListSortDirection.Ascending)
                 {

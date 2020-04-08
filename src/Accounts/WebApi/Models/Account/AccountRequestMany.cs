@@ -17,6 +17,6 @@ namespace Accounts.WebApi.Models.Account
         /// <summary>
         /// Is account disabled
         /// </summary>
-        public bool IsDisabled { get; set; }
+        public bool? IsDisabled { get; set; }
     }
 }

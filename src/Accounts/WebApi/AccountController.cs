@@ -29,7 +29,7 @@ namespace Accounts.WebApi
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(Paginated<Account, string>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Paginated<AccountModel, string>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ModelStateDictionaryErrorResponse), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetManyAsync([FromQuery] AccountRequestMany request)
         {
@@ -48,7 +48,7 @@ namespace Accounts.WebApi
 
             var accounts = await _accountService.GetAllAsync(brokerId, request.Id, request.Name, request.IsDisabled, sortOrder, request.Cursor, request.Limit);
 
-            var result = _mapper.Map<List<Account>>(accounts);
+            var result = _mapper.Map<List<AccountModel>>(accounts);
 
             return Ok(result.Paginate(request, Url, x => x.Id));
         }
