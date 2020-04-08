@@ -35,6 +35,6 @@ namespace Accounts.Domain.Entities
         /// <summary>
         /// The last update date and time.
         /// </summary>
-        public DateTime Modified { get; set; }
+        public DateTimeOffset Modified { get; set; }
     }
 }

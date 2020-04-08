@@ -107,7 +107,7 @@ namespace Accounts.Repositories
 
         public async Task<Account> UpdateAsync(Account account)
         {
-            account.Modified = DateTime.UtcNow;
+            account.Modified = DateTimeOffset.UtcNow;
 
             using (var context = _connectionFactory.CreateDataContext())
             {

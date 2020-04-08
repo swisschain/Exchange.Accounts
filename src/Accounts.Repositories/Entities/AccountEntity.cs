@@ -26,6 +26,6 @@ namespace Accounts.Repositories.Entities
         public DateTimeOffset Created { get; set; }
 
         [Column("modified")]
-        public DateTime Modified { get; set; }
+        public DateTimeOffset Modified { get; set; }
     }
 }

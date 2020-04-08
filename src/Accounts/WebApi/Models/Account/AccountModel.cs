@@ -30,6 +30,6 @@ namespace Accounts.WebApi.Models.Account
         /// <summary>
         /// The last update date and time.
         /// </summary>
-        public DateTime Modified { get; set; }
+        public DateTimeOffset Modified { get; set; }
     }
 }
