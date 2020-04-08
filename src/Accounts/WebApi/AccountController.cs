@@ -84,7 +84,7 @@ namespace Accounts.WebApi
         }
 
         [HttpPut]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(AccountModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> UpdateAsync([FromBody] AccountEditModel model)
         {
@@ -95,7 +95,7 @@ namespace Accounts.WebApi
             if (updated == null)
                 return NotFound();
 
-            var newModel = _mapper.Map<Account>(updated);
+            var newModel = _mapper.Map<AccountModel>(updated);
 
             return Ok(newModel);
         }
