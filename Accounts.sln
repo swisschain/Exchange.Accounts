@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestClient", "tests\TestCli
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountsTests", "tests\AccountsTests\AccountsTests.csproj", "{4C51C936-D545-49A9-816A-4F2C357B56DF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accounts.Common", "src\Accounts.Common\Accounts.Common.csproj", "{2BFF98C7-1714-4000-A468-DBD9C24E7B02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accounts.Domain", "src\Accounts.Common\Accounts.Domain.csproj", "{2BFF98C7-1714-4000-A468-DBD9C24E7B02}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accounts.Worker", "src\Accounts.Worker\Accounts.Worker.csproj", "{4EFB5D11-FED0-420B-B71F-503FBE77B2BC}"
 EndProject
@@ -44,9 +44,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", 
 		deployment\kubernetes\readme.md = deployment\kubernetes\readme.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accounts.Repositories", "src\Accounts.Repositories\Accounts.Repositories.csproj", "{824D2E07-A94F-4495-BF7D-FA543820D1D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accounts.Repositories", "src\Accounts.Repositories\Accounts.Repositories.csproj", "{824D2E07-A94F-4495-BF7D-FA543820D1D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accounts.Services", "src\Accounts.Services\Accounts.Services.csproj", "{67FBBA1C-CABA-4CD5-9502-4730342176E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accounts.Services", "src\Accounts.Services\Accounts.Services.csproj", "{67FBBA1C-CABA-4CD5-9502-4730342176E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

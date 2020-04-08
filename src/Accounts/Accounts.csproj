@@ -32,7 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Accounts.Common\Accounts.Common.csproj" />
+    <ProjectReference Include="..\Accounts.Common\Accounts.Domain.csproj" />
     <ProjectReference Include="..\Accounts.Repositories\Accounts.Repositories.csproj" />
     <ProjectReference Include="..\Accounts.Services\Accounts.Services.csproj" />
   </ItemGroup>
