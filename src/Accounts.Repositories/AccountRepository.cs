@@ -107,14 +107,20 @@ namespace Accounts.Repositories
 
         public async Task<Account> UpdateAsync(Account account)
         {
-            account.Modified = DateTimeOffset.UtcNow;
-
             using (var context = _connectionFactory.CreateDataContext())
             {
                 var entity = await context.Accounts
                     .FindAsync(account.Id);
 
-                _mapper.Map(account, entity);
+                if (account.BrokerId != entity.BrokerId)
+                    throw new InvalidOperationException($"BrokerIds are different: '{account.BrokerId}' != '{entity.BrokerId}'");
+
+                var created = entity.Created;
+
+                entity = _mapper.Map<AccountEntity>(account);
+
+                entity.Created = created;
+                entity.Modified = DateTimeOffset.UtcNow;
 
                 await context.SaveChangesAsync();
 

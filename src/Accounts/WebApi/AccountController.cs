@@ -90,6 +90,8 @@ namespace Accounts.WebApi
         {
             var domain = _mapper.Map<Account>(model);
 
+            domain.BrokerId = User.GetTenantId();
+
             var updated = await _accountService.UpdateAsync(domain);
 
             if (updated == null)
