@@ -115,11 +115,8 @@ namespace Accounts.Repositories
                 if (account.BrokerId != entity.BrokerId)
                     throw new InvalidOperationException($"BrokerIds are different: '{account.BrokerId}' != '{entity.BrokerId}'");
 
-                var created = entity.Created;
-
-                entity = _mapper.Map<AccountEntity>(account);
-
-                entity.Created = created;
+                entity.IsDisabled = account.IsDisabled;
+                entity.Name = account.Name;
                 entity.Modified = DateTimeOffset.UtcNow;
 
                 await context.SaveChangesAsync();
