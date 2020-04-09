@@ -76,12 +76,17 @@ namespace Accounts.Repositories
             }
         }
 
-        public async Task<Account> GetByIdAsync(string accountId)
+        public async Task<Account> GetByIdAsync(string brokerId, string accountId)
         {
             using (var context = _connectionFactory.CreateDataContext())
             {
-                var entity = await context.Accounts
-                    .FindAsync(accountId);
+                IQueryable<AccountEntity> query = context.Accounts;
+
+                query = query.Where(x => x.BrokerId.ToUpper() == brokerId.ToUpper());
+
+                query = query.Where(x => x.Id.ToUpper() == accountId.ToUpper());
+
+                var entity = await query.SingleOrDefaultAsync();
 
                 return _mapper.Map<Account>(entity);
             }
@@ -89,11 +94,11 @@ namespace Accounts.Repositories
 
         public async Task<Account> InsertAsync(Account account)
         {
-            account.Created = DateTimeOffset.UtcNow;
-
             using (var context = _connectionFactory.CreateDataContext())
             {
                 var entity = _mapper.Map<AccountEntity>(account);
+
+                account.Created = DateTimeOffset.UtcNow;
 
                 context.Accounts.Add(entity);
 
@@ -115,8 +120,8 @@ namespace Accounts.Repositories
                 if (account.BrokerId != entity.BrokerId)
                     throw new InvalidOperationException($"BrokerIds are different: '{account.BrokerId}' != '{entity.BrokerId}'");
 
-                entity.IsDisabled = account.IsDisabled;
-                entity.Name = account.Name;
+                _mapper.Map(account, entity);
+
                 entity.Modified = DateTimeOffset.UtcNow;
 
                 await context.SaveChangesAsync();

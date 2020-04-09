@@ -58,7 +58,9 @@ namespace Accounts.WebApi
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetByIdAsync(string accountId)
         {
-            var account = await _accountService.GetByIdAsync(accountId);
+            var brokerId = User.GetTenantId();
+
+            var account = await _accountService.GetByIdAsync(brokerId, accountId);
 
             if (account == null)
                 return NotFound();

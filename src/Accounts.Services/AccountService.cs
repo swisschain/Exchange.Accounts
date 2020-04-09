@@ -25,9 +25,9 @@ namespace Accounts.Services
             return _accountRepository.GetAllAsync(brokerId);
         }
 
-        public Task<Account> GetByIdAsync(string accountId)
+        public Task<Account> GetByIdAsync(string brokerId, string accountId)
         {
-            return _accountRepository.GetByIdAsync(accountId);
+            return _accountRepository.GetByIdAsync(brokerId, accountId);
         }
 
         public Task<IReadOnlyList<Account>> GetAllAsync(string brokerId, string accountId, string name, bool? isDisabled,

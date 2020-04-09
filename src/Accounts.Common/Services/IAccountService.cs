@@ -12,7 +12,7 @@ namespace Accounts.Domain.Services
         Task<IReadOnlyList<Account>> GetAllAsync(string brokerId, string accountId, string name, bool? isDisabled,
             ListSortDirection sortOrder = ListSortDirection.Ascending, string cursor = null, int limit = 50);
 
-        Task<Account> GetByIdAsync(string accountId);
+        Task<Account> GetByIdAsync(string brokerId, string accountId);
 
         Task<Account> AddAsync(Account account);
 
