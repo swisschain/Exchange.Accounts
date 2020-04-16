@@ -46,7 +46,7 @@ namespace Accounts.WebApi
 
             var brokerId = User.GetTenantId();
 
-            var accounts = await _accountService.GetAllAsync(brokerId, request.Id, request.Name, request.IsDisabled, sortOrder, request.Cursor, request.Limit);
+            var accounts = await _accountService.GetAllAsync(brokerId, request.Name, request.IsDisabled, sortOrder, request.Cursor, request.Limit);
 
             var result = _mapper.Map<List<AccountModel>>(accounts);
 

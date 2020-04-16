@@ -30,10 +30,10 @@ namespace Accounts.Services
             return _accountRepository.GetByIdAsync(brokerId, accountId);
         }
 
-        public Task<IReadOnlyList<Account>> GetAllAsync(string brokerId, string accountId, string name, bool? isDisabled,
+        public Task<IReadOnlyList<Account>> GetAllAsync(string brokerId, string name, bool? isDisabled,
             ListSortDirection sortOrder = ListSortDirection.Ascending, string cursor = null, int limit = 50)
         {
-            return _accountRepository.GetAllAsync(brokerId, accountId, name, isDisabled, sortOrder, cursor, limit);
+            return _accountRepository.GetAllAsync(brokerId, name, isDisabled, sortOrder, cursor, limit);
         }
 
         public Task<Account> AddAsync(Account account)

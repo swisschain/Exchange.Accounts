@@ -35,7 +35,7 @@ namespace Accounts.Repositories
             }
         }
         
-        public async Task<IReadOnlyList<Account>> GetAllAsync(string brokerId, string accountId, string name, bool? isDisabled,
+        public async Task<IReadOnlyList<Account>> GetAllAsync(string brokerId, string name, bool? isDisabled,
             ListSortDirection sortOrder = ListSortDirection.Ascending, string cursor = null, int limit = 50)
         {
             using (var context = _connectionFactory.CreateDataContext())
@@ -44,11 +44,8 @@ namespace Accounts.Repositories
 
                 query = query.Where(x => x.BrokerId.ToUpper() == brokerId.ToUpper());
 
-                if (!string.IsNullOrEmpty(accountId))
-                    query = query.Where(x => x.Id.Contains(accountId, StringComparison.InvariantCultureIgnoreCase));
-
                 if (!string.IsNullOrEmpty(name))
-                    query = query.Where(x => x.Name.Contains(name, StringComparison.InvariantCultureIgnoreCase));
+                    query = query.Where(x => EF.Functions.ILike(x.Name, $"%{name}%"));
 
                 if (isDisabled.HasValue)
                     query = query.Where(x => x.IsDisabled == isDisabled.Value);
@@ -56,14 +53,14 @@ namespace Accounts.Repositories
                 if (sortOrder == ListSortDirection.Ascending)
                 {
                     if (cursor != null)
-                        query = query.Where(x => String.Compare(x.Id, cursor, StringComparison.CurrentCultureIgnoreCase) >= 0);
+                        query = query.Where(x => x.Id.CompareTo(cursor) >= 0);
 
                     query = query.OrderBy(x => x.Id);
                 }
                 else
                 {
                     if (cursor != null)
-                        query = query.Where(x => String.Compare(x.Id, cursor, StringComparison.CurrentCultureIgnoreCase) < 0);
+                        query = query.Where(x => x.Id.CompareTo(cursor) < 0);
 
                     query = query.OrderByDescending(x => x.Id);
                 }
