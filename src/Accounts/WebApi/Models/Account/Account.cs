@@ -5,7 +5,7 @@ namespace Accounts.WebApi.Models.Account
     /// <summary>
     /// Represents account.
     /// </summary>
-    public class AccountModel
+    public class Account
     {
         /// <summary>
         /// Account identifier.

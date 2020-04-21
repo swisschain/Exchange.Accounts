@@ -22,6 +22,7 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="8.6.2" />
+    <PackageReference Include="JetBrains.Annotations" Version="2020.1.0" />
     <PackageReference Include="MassTransit" Version="6.2.2" />
     <PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="6.2.2" />
     <PackageReference Include="MassTransit.RabbitMQ" Version="6.2.2" />

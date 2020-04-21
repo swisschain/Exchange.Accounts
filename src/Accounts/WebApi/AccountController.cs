@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Swisschain.Sdk.Server.Authorization;
 using Swisschain.Sdk.Server.WebApi.Common;
 using Swisschain.Sdk.Server.WebApi.Pagination;
+using Account = Accounts.WebApi.Models.Account.Account;
 
 namespace Accounts.WebApi
 {
@@ -29,17 +30,10 @@ namespace Accounts.WebApi
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(Paginated<AccountModel, string>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Paginated<Account, string>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ModelStateDictionaryErrorResponse), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetManyAsync([FromQuery] AccountRequestMany request)
         {
-            if (request.Limit > 1000)
-            {
-                ModelState.AddModelError($"{nameof(request.Limit)}", "Should not be more than 1000");
-
-                return BadRequest(ModelState);
-            }
-
             var sortOrder = request.Order == PaginationOrder.Asc
                 ? ListSortDirection.Ascending
                 : ListSortDirection.Descending;
@@ -48,13 +42,13 @@ namespace Accounts.WebApi
 
             var accounts = await _accountService.GetAllAsync(brokerId, request.Name, request.IsDisabled, sortOrder, request.Cursor, request.Limit);
 
-            var result = _mapper.Map<List<AccountModel>>(accounts);
+            var result = _mapper.Map<List<Account>>(accounts);
 
             return Ok(result.Paginate(request, Url, x => x.Id));
         }
 
         [HttpGet("{accountId}")]
-        [ProducesResponseType(typeof(AccountModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Account), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetByIdAsync(string accountId)
         {
@@ -65,32 +59,32 @@ namespace Accounts.WebApi
             if (account == null)
                 return NotFound();
 
-            var model = _mapper.Map<AccountModel>(account);
+            var model = _mapper.Map<Account>(account);
 
             return Ok(model);
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(AccountModel), StatusCodes.Status200OK)]
-        public async Task<IActionResult> AddAsync(AccountEditModel account)
+        [ProducesResponseType(typeof(Account), StatusCodes.Status200OK)]
+        public async Task<IActionResult> AddAsync(AccountEdit account)
         {
-            var domain = _mapper.Map<Account>(account);
+            var domain = _mapper.Map<Domain.Entities.Account>(account);
 
             domain.BrokerId = User.GetTenantId();
 
             var newDomain = await _accountService.AddAsync(domain);
 
-            var newViewModel = _mapper.Map<AccountModel>(newDomain);
+            var newViewModel = _mapper.Map<Account>(newDomain);
 
             return Ok(newViewModel);
         }
 
         [HttpPut]
-        [ProducesResponseType(typeof(AccountModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Account), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> UpdateAsync([FromBody] AccountEditModel model)
+        public async Task<IActionResult> UpdateAsync([FromBody] AccountEdit model)
         {
-            var domain = _mapper.Map<Account>(model);
+            var domain = _mapper.Map<Domain.Entities.Account>(model);
 
             domain.BrokerId = User.GetTenantId();
 
@@ -99,7 +93,7 @@ namespace Accounts.WebApi
             if (updated == null)
                 return NotFound();
 
-            var newModel = _mapper.Map<AccountModel>(updated);
+            var newModel = _mapper.Map<Account>(updated);
 
             return Ok(newModel);
         }

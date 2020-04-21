@@ -3,7 +3,7 @@
     /// <summary>
     /// Represents account
     /// </summary>
-    public class AccountEditModel
+    public class AccountEdit
     {
         /// <summary>
         /// Account identifier

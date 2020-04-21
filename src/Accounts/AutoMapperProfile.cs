@@ -1,6 +1,7 @@
 ﻿using Accounts.Domain.Entities;
 using Accounts.WebApi.Models.Account;
 using AutoMapper;
+using Account = Accounts.WebApi.Models.Account.Account;
 
 namespace Accounts
 {
@@ -8,11 +9,11 @@ namespace Accounts
     {
         public AutoMapperProfile()
         {
-            CreateMap<Account, AccountModel>(MemberList.Destination);
-            CreateMap<AccountModel, Account>(MemberList.Source);
+            CreateMap<Domain.Entities.Account, Account>(MemberList.Destination);
+            CreateMap<Account, Domain.Entities.Account>(MemberList.Source);
 
-            CreateMap<Account, AccountEditModel>(MemberList.Destination);
-            CreateMap<AccountEditModel, Account>(MemberList.Source);
+            CreateMap<Domain.Entities.Account, AccountEdit>(MemberList.Destination);
+            CreateMap<AccountEdit, Domain.Entities.Account>(MemberList.Source);
         }
     }
 }
