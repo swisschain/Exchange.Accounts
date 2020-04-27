@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Accounts.Domain.Entities.Enums;
 
 namespace Accounts.Repositories.Entities
 {
@@ -22,10 +23,13 @@ namespace Accounts.Repositories.Entities
         [Column("is_disabled")]
         public bool IsDisabled { get; set; }
 
-        [Column("created")]
-        public DateTimeOffset Created { get; set; }
+        [Column("type", TypeName = "varchar(16)")]
+        public AccountType Type { get; set; }
 
-        [Column("modified")]
-        public DateTimeOffset Modified { get; set; }
+        [Column("created", TypeName = "timestamp with time zone")]
+        public DateTime Created { get; set; }
+
+        [Column("modified", TypeName = "timestamp with time zone")]
+        public DateTime Modified { get; set; }
     }
 }

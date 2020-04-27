@@ -31,18 +31,27 @@ namespace Accounts.Repositories.Migrations
                         .HasColumnName("broker_id")
                         .HasColumnType("varchar(36)");
 
+                    b.Property<DateTime>("Created")
+                        .HasColumnName("created")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsDisabled")
+                        .HasColumnName("is_disabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("Modified")
+                        .HasColumnName("modified")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnName("name")
                         .HasColumnType("varchar(36)");
 
-                    b.Property<DateTimeOffset>("Created")
-                        .HasColumnName("created")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<bool>("IsEnabled")
-                        .HasColumnName("is_enabled")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnName("type")
+                        .HasColumnType("varchar(16)");
 
                     b.HasKey("Id");
 

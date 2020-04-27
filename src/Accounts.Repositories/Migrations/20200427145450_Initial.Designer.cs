@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Accounts.Repositories.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200406163216_Initial")]
+    [Migration("20200427145450_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,18 +33,27 @@ namespace Accounts.Repositories.Migrations
                         .HasColumnName("broker_id")
                         .HasColumnType("varchar(36)");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnName("name")
-                        .HasColumnType("varchar(36)");
-
-                    b.Property<DateTimeOffset>("Created")
+                    b.Property<DateTime>("Created")
                         .HasColumnName("created")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("IsDisabled")
                         .HasColumnName("is_disabled")
                         .HasColumnType("boolean");
+
+                    b.Property<DateTime>("Modified")
+                        .HasColumnName("modified")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnName("name")
+                        .HasColumnType("varchar(36)");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnName("type")
+                        .HasColumnType("varchar(16)");
 
                     b.HasKey("Id");
 

@@ -1,4 +1,6 @@
-﻿namespace Accounts.WebApi.Models.Account
+﻿using Accounts.Domain.Entities.Enums;
+
+namespace Accounts.WebApi.Models.Account
 {
     /// <summary>
     /// Represents account
@@ -14,5 +16,10 @@
         /// Is account disabled
         /// </summary>
         public bool IsDisabled { get; set; }
+
+        /// <summary>
+        /// Account type.
+        /// </summary>
+        public AccountType Type { get; set; }
     }
 }

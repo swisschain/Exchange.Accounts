@@ -1,4 +1,5 @@
 ﻿using System;
+using Accounts.Domain.Entities.Enums;
 
 namespace Accounts.Domain.Entities
 {
@@ -28,13 +29,18 @@ namespace Accounts.Domain.Entities
         public bool IsDisabled { get; set; }
 
         /// <summary>
+        /// Account type.
+        /// </summary>
+        public AccountType Type { get; set; }
+
+        /// <summary>
         /// Creation timestamp.
         /// </summary>
-        public DateTimeOffset Created { get; set; }
+        public DateTime Created { get; set; }
 
         /// <summary>
         /// The last update date and time.
         /// </summary>
-        public DateTimeOffset Modified { get; set; }
+        public DateTime Modified { get; set; }
     }
 }

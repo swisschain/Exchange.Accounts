@@ -95,7 +95,7 @@ namespace Accounts.Repositories
             {
                 var entity = _mapper.Map<AccountEntity>(account);
 
-                account.Created = DateTimeOffset.UtcNow;
+                account.Created = DateTime.UtcNow;
 
                 context.Accounts.Add(entity);
 
@@ -115,11 +115,12 @@ namespace Accounts.Repositories
                     .FindAsync(account.Id);
 
                 if (account.BrokerId != entity.BrokerId)
-                    throw new InvalidOperationException($"BrokerIds are different: '{account.BrokerId}' != '{entity.BrokerId}'");
+                    throw new InvalidOperationException($"Broker ids are different: '{account.BrokerId}' != '{entity.BrokerId}'");
 
-                _mapper.Map(account, entity);
+                entity.Name = account.Name;
+                entity.IsDisabled = account.IsDisabled;
 
-                entity.Modified = DateTimeOffset.UtcNow;
+                entity.Modified = DateTime.UtcNow;
 
                 await context.SaveChangesAsync();
 
