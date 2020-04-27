@@ -66,7 +66,7 @@ namespace Accounts.WebApi
 
         [HttpPost]
         [ProducesResponseType(typeof(Account), StatusCodes.Status200OK)]
-        public async Task<IActionResult> AddAsync(AccountEdit account)
+        public async Task<IActionResult> AddAsync(AccountAdd account)
         {
             var domain = _mapper.Map<Domain.Entities.Account>(account);
 

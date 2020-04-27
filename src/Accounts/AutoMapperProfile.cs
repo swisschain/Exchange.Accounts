@@ -14,6 +14,9 @@ namespace Accounts
 
             CreateMap<Domain.Entities.Account, AccountEdit>(MemberList.Destination);
             CreateMap<AccountEdit, Domain.Entities.Account>(MemberList.Source);
+
+            CreateMap<Domain.Entities.Account, AccountAdd>(MemberList.Destination);
+            CreateMap<AccountAdd, Domain.Entities.Account>(MemberList.Source);
         }
     }
 }
