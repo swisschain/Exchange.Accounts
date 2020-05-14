@@ -1,0 +1,69 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Version>1.0.0</Version>
+    <Authors>Swisschain</Authors>
+    <Company>Swisschain</Company>
+    <Description>Client for Swisschain.Exchange.Accounts API</Description>
+    <AssemblyName>Swisschain.Exchange.Accounts.Client</AssemblyName>
+    <PackageId>Swisschain.Exchange.Accounts.Client</PackageId>
+    <RootNamespace>Swisschain.Exchange.Accounts.Client</RootNamespace>
+    <Authors>Swisschain</Authors>
+    <Product>Exchange</Product>
+    <PackageLicenseUrl>https://github.com/Swisschain/Exchange.Accounts/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/Swisschain/Exchange.Accounts</PackageProjectUrl>
+    <PackageIconUrl>https://avatars3.githubusercontent.com/u/14153330?v=3&amp;amp;s=200</PackageIconUrl>
+    <RepositoryUrl>https://github.com/Swisschain/Exchange.Accounts.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Swisschain</PackageTags>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Protos\**" />
+    <EmbeddedResource Remove="Protos\**" />
+    <None Remove="Protos\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="5.1.4" />
+    <PackageReference Include="Google.Protobuf" Version="3.11.4" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.28.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.28.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="..\..\.protos\accounts.proto" Link="Protos\accounts.proto" />
+    <Protobuf Include="..\..\.protos\isalive.proto" Link="Protos\isalive.proto" />
+  </ItemGroup>
+
+  <!--
+    The following solves the problem that 'dotnet pack' does not include the DLLs from referenced projects.
+    See https://github.com/NuGet/Home/issues/3891 for a description of the problem
+    and for newer versions / workarounds / built-in methods.
+  -->
+  <PropertyGroup>
+    <TargetsForTfmSpecificBuildOutput>
+      $(TargetsForTfmSpecificBuildOutput);PackReferencedProjectOutputs
+    </TargetsForTfmSpecificBuildOutput>
+  </PropertyGroup>
+
+  <Target Name="PackReferencedProjectOutputs" DependsOnTargets="BuildOnlySettings;ResolveReferences">
+    <ItemGroup>
+      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))" />
+    </ItemGroup>
+  </Target>
+
+</Project>

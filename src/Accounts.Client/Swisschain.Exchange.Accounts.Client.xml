@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Swisschain.Exchange.Accounts.Client</name>
+    </assembly>
+    <members>
+        <member name="T:Swisschain.Exchange.Accounts.Contract.AccountsReflection">
+            <summary>Holder for reflection information generated from accounts.proto</summary>
+        </member>
+        <member name="P:Swisschain.Exchange.Accounts.Contract.AccountsReflection.Descriptor">
+            <summary>File descriptor for accounts.proto</summary>
+        </member>
+        <member name="F:Swisschain.Exchange.Accounts.Contract.AddAccountRequest.BrokerIdFieldNumber">
+            <summary>Field number for the "brokerId" field.</summary>
+        </member>
+        <member name="F:Swisschain.Exchange.Accounts.Contract.AddAccountRequest.NameFieldNumber">
+            <summary>Field number for the "name" field.</summary>
+        </member>
+        <member name="F:Swisschain.Exchange.Accounts.Contract.AddAccountRequest.IsDisabledFieldNumber">
+            <summary>Field number for the "is_disabled" field.</summary>
+        </member>
+        <member name="F:Swisschain.Exchange.Accounts.Contract.AddAccountRequest.TypeFieldNumber">
+            <summary>Field number for the "type" field.</summary>
+        </member>
+        <member name="F:Swisschain.Exchange.Accounts.Contract.AddAccountResponse.AccountFieldNumber">
+            <summary>Field number for the "account" field.</summary>
+        </member>
+        <member name="F:Swisschain.Exchange.Accounts.Contract.Account.IdFieldNumber">
+            <summary>Field number for the "id" field.</summary>
+        </member>
+        <member name="F:Swisschain.Exchange.Accounts.Contract.Account.BrokerIdFieldNumber">
+            <summary>Field number for the "brokerId" field.</summary>
+        </member>
+        <member name="F:Swisschain.Exchange.Accounts.Contract.Account.NameFieldNumber">
+            <summary>Field number for the "name" field.</summary>
+        </member>
+        <member name="F:Swisschain.Exchange.Accounts.Contract.Account.IsDisabledFieldNumber">
+            <summary>Field number for the "is_disabled" field.</summary>
+        </member>
+        <member name="F:Swisschain.Exchange.Accounts.Contract.Account.TypeFieldNumber">
+            <summary>Field number for the "type" field.</summary>
+        </member>
+        <member name="F:Swisschain.Exchange.Accounts.Contract.Account.CreatedFieldNumber">
+            <summary>Field number for the "created" field.</summary>
+        </member>
+        <member name="F:Swisschain.Exchange.Accounts.Contract.Account.ModifiedFieldNumber">
+            <summary>Field number for the "modified" field.</summary>
+        </member>
+        <member name="P:Swisschain.Exchange.Accounts.Contract.AccountsGrpc.Descriptor">
+            <summary>Service descriptor</summary>
+        </member>
+        <member name="T:Swisschain.Exchange.Accounts.Contract.AccountsGrpc.AccountsGrpcBase">
+            <summary>Base class for server-side implementations of AccountsGrpc</summary>
+        </member>
+        <member name="T:Swisschain.Exchange.Accounts.Contract.AccountsGrpc.AccountsGrpcClient">
+            <summary>Client for AccountsGrpc</summary>
+        </member>
+        <member name="M:Swisschain.Exchange.Accounts.Contract.AccountsGrpc.AccountsGrpcClient.#ctor(Grpc.Core.ChannelBase)">
+            <summary>Creates a new client for AccountsGrpc</summary>
+            <param name="channel">The channel to use to make remote calls.</param>
+        </member>
+        <member name="M:Swisschain.Exchange.Accounts.Contract.AccountsGrpc.AccountsGrpcClient.#ctor(Grpc.Core.CallInvoker)">
+            <summary>Creates a new client for AccountsGrpc that uses a custom <c>CallInvoker</c>.</summary>
+            <param name="callInvoker">The callInvoker to use to make remote calls.</param>
+        </member>
+        <member name="M:Swisschain.Exchange.Accounts.Contract.AccountsGrpc.AccountsGrpcClient.#ctor">
+            <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
+        </member>
+        <member name="M:Swisschain.Exchange.Accounts.Contract.AccountsGrpc.AccountsGrpcClient.#ctor(Grpc.Core.ClientBase.ClientBaseConfiguration)">
+            <summary>Protected constructor to allow creation of configured clients.</summary>
+            <param name="configuration">The client configuration.</param>
+        </member>
+        <member name="M:Swisschain.Exchange.Accounts.Contract.AccountsGrpc.AccountsGrpcClient.NewInstance(Grpc.Core.ClientBase.ClientBaseConfiguration)">
+            <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
+        </member>
+        <member name="M:Swisschain.Exchange.Accounts.Contract.AccountsGrpc.BindService(Swisschain.Exchange.Accounts.Contract.AccountsGrpc.AccountsGrpcBase)">
+            <summary>Creates service definition that can be registered with a server</summary>
+            <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+        </member>
+        <member name="M:Swisschain.Exchange.Accounts.Contract.AccountsGrpc.BindService(Grpc.Core.ServiceBinderBase,Swisschain.Exchange.Accounts.Contract.AccountsGrpc.AccountsGrpcBase)">
+            <summary>Register service method with a service binder with or without implementation. Useful when customizing the  service binding logic.
+            Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
+            <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
+            <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+        </member>
+        <member name="T:Swisschain.Exchange.Accounts.Contract.IsaliveReflection">
+            <summary>Holder for reflection information generated from isalive.proto</summary>
+        </member>
+        <member name="P:Swisschain.Exchange.Accounts.Contract.IsaliveReflection.Descriptor">
+            <summary>File descriptor for isalive.proto</summary>
+        </member>
+        <member name="F:Swisschain.Exchange.Accounts.Contract.IsAliveResponce.NameFieldNumber">
+            <summary>Field number for the "name" field.</summary>
+        </member>
+        <member name="F:Swisschain.Exchange.Accounts.Contract.IsAliveResponce.VersionFieldNumber">
+            <summary>Field number for the "version" field.</summary>
+        </member>
+        <member name="F:Swisschain.Exchange.Accounts.Contract.IsAliveResponce.StartedAtFieldNumber">
+            <summary>Field number for the "startedAt" field.</summary>
+        </member>
+        <member name="P:Swisschain.Exchange.Accounts.Contract.Monitoring.Descriptor">
+            <summary>Service descriptor</summary>
+        </member>
+        <member name="T:Swisschain.Exchange.Accounts.Contract.Monitoring.MonitoringBase">
+            <summary>Base class for server-side implementations of Monitoring</summary>
+        </member>
+        <member name="T:Swisschain.Exchange.Accounts.Contract.Monitoring.MonitoringClient">
+            <summary>Client for Monitoring</summary>
+        </member>
+        <member name="M:Swisschain.Exchange.Accounts.Contract.Monitoring.MonitoringClient.#ctor(Grpc.Core.ChannelBase)">
+            <summary>Creates a new client for Monitoring</summary>
+            <param name="channel">The channel to use to make remote calls.</param>
+        </member>
+        <member name="M:Swisschain.Exchange.Accounts.Contract.Monitoring.MonitoringClient.#ctor(Grpc.Core.CallInvoker)">
+            <summary>Creates a new client for Monitoring that uses a custom <c>CallInvoker</c>.</summary>
+            <param name="callInvoker">The callInvoker to use to make remote calls.</param>
+        </member>
+        <member name="M:Swisschain.Exchange.Accounts.Contract.Monitoring.MonitoringClient.#ctor">
+            <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
+        </member>
+        <member name="M:Swisschain.Exchange.Accounts.Contract.Monitoring.MonitoringClient.#ctor(Grpc.Core.ClientBase.ClientBaseConfiguration)">
+            <summary>Protected constructor to allow creation of configured clients.</summary>
+            <param name="configuration">The client configuration.</param>
+        </member>
+        <member name="M:Swisschain.Exchange.Accounts.Contract.Monitoring.MonitoringClient.NewInstance(Grpc.Core.ClientBase.ClientBaseConfiguration)">
+            <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
+        </member>
+        <member name="M:Swisschain.Exchange.Accounts.Contract.Monitoring.BindService(Swisschain.Exchange.Accounts.Contract.Monitoring.MonitoringBase)">
+            <summary>Creates service definition that can be registered with a server</summary>
+            <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+        </member>
+        <member name="M:Swisschain.Exchange.Accounts.Contract.Monitoring.BindService(Grpc.Core.ServiceBinderBase,Swisschain.Exchange.Accounts.Contract.Monitoring.MonitoringBase)">
+            <summary>Register service method with a service binder with or without implementation. Useful when customizing the  service binding logic.
+            Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
+            <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
+            <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+        </member>
+    </members>
+</doc>

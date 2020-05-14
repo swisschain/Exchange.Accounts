@@ -27,9 +27,9 @@ namespace Accounts.Repositories.Entities
         public AccountType Type { get; set; }
 
         [Column("created", TypeName = "timestamp with time zone")]
-        public DateTime Created { get; set; }
+        public DateTimeOffset Created { get; set; }
 
         [Column("modified", TypeName = "timestamp with time zone")]
-        public DateTime Modified { get; set; }
+        public DateTimeOffset Modified { get; set; }
     }
 }

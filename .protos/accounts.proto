@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+option csharp_namespace = "Swisschain.Exchange.Accounts.Contract";
+
+package com.swisschain.dictionaries.grpc;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+service AccountsGrpc {
+    rpc Add (AddAccountRequest) returns (AddAccountResponse);
+}
+
+message AddAccountRequest {
+    string brokerId = 1;
+    string name = 2;
+    bool is_disabled = 3;
+    AccountType type = 4;
+}
+
+message AddAccountResponse {
+    Account account = 1;
+}
+
+message Account {
+    string id = 1;
+    string brokerId = 2;
+    string name = 3;
+    bool is_disabled = 4;
+    AccountType type = 5;
+    google.protobuf.Timestamp created = 6;
+    google.protobuf.Timestamp modified = 7;
+}
+
+enum AccountType {
+    NONE = 0;
+    REGULAR = 1;
+    TECHNICAL = 2;
+}

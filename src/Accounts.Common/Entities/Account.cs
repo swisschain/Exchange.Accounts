@@ -31,6 +31,7 @@ namespace Accounts.Domain.Entities
         /// <summary>
         /// Account type.
         /// </summary>
+        /// TODO: Has to be deleted (is not used anywhere)
         public AccountType Type { get; set; }
 
         /// <summary>

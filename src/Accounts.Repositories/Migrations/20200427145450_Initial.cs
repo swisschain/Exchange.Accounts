@@ -51,6 +51,13 @@ namespace Accounts.Repositories.Migrations
                 schema: "accounts",
                 table: "accounts",
                 column: "type");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_accounts_broker_id_name",
+                schema: "accounts",
+                table: "accounts",
+                columns: new[] { "broker_id", "name" },
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

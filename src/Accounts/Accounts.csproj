@@ -33,9 +33,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Accounts.Client\Accounts.Client.csproj" />
     <ProjectReference Include="..\Accounts.Common\Accounts.Domain.csproj" />
     <ProjectReference Include="..\Accounts.Repositories\Accounts.Repositories.csproj" />
     <ProjectReference Include="..\Accounts.Services\Accounts.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="..\..\.protos\accounts.proto" Link="Protos\accounts.proto" />
+    <Protobuf Include="..\..\.protos\isalive.proto" Link="Protos\isalive.proto" />
   </ItemGroup>
 
   <ItemGroup>

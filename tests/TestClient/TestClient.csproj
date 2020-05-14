@@ -6,4 +6,8 @@
     <AssemblyName>Exchange.Accounts.TestClient</AssemblyName>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Accounts.Client\Accounts.Client.csproj" />
+  </ItemGroup>
+
 </Project>

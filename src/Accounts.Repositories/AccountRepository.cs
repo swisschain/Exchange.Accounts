@@ -93,17 +93,16 @@ namespace Accounts.Repositories
         {
             using (var context = _connectionFactory.CreateDataContext())
             {
-                var entity = _mapper.Map<AccountEntity>(account);
+                var data = _mapper.Map<AccountEntity>(account);
 
-                account.Created = DateTime.UtcNow;
+                data.Created = DateTime.UtcNow;
+                data.Modified = data.Created;
 
-                context.Accounts.Add(entity);
+                context.Accounts.Add(data);
 
                 await context.SaveChangesAsync();
 
-                var result = _mapper.Map<Account>(entity);
-
-                return result;
+                return _mapper.Map<Account>(data);
             }
         }
 
@@ -111,22 +110,23 @@ namespace Accounts.Repositories
         {
             using (var context = _connectionFactory.CreateDataContext())
             {
-                var entity = await context.Accounts
-                    .FindAsync(account.Id);
+                var data = await GetAsync(account.Id, account.BrokerId, context);
 
-                if (account.BrokerId != entity.BrokerId)
-                    throw new InvalidOperationException($"Broker ids are different: '{account.BrokerId}' != '{entity.BrokerId}'");
+                // save fields that has not be updated
+                var type = data.Type;
+                var created = data.Created;
 
-                entity.Name = account.Name;
-                entity.IsDisabled = account.IsDisabled;
+                _mapper.Map(account, data);
 
-                entity.Modified = DateTime.UtcNow;
+                // restore fields that has not be updated
+                data.Type = type;
+                data.Created = created;
+
+                data.Modified = DateTime.UtcNow;
 
                 await context.SaveChangesAsync();
 
-                var result = _mapper.Map<Account>(entity);
-
-                return result;
+                return _mapper.Map<Account>(data);
             }
         }
 
@@ -140,6 +140,18 @@ namespace Accounts.Repositories
 
                 await context.SaveChangesAsync();
             }
+        }
+
+        private async Task<AccountEntity> GetAsync(string id, string brokerId, DataContext context)
+        {
+            IQueryable<AccountEntity> query = context.Accounts;
+
+            var existed = await query
+                .Where(x => x.Id == id)
+                .Where(x => x.BrokerId == brokerId)
+                .SingleOrDefaultAsync();
+
+            return existed;
         }
     }
 }
