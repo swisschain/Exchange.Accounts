@@ -9,6 +9,8 @@ namespace Accounts.Domain.Services
     {
         Task<IReadOnlyList<Account>> GetAllAsync(string brokerId);
 
+        Task<IReadOnlyList<Account>> GetAllAsync(IEnumerable<long> ids, string brokerId);
+
         Task<IReadOnlyList<Account>> GetAllAsync(string brokerId, string name, bool? isEnabled,
             ListSortDirection sortOrder = ListSortDirection.Ascending, long cursor = 0, int limit = 50);
 

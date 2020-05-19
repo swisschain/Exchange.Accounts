@@ -38,7 +38,21 @@ namespace Accounts.Domain.Persistence.Repositories
 
             return _mapper.Map<Account[]>(entities);
         }
-        
+
+        public async Task<IReadOnlyList<Account>> GetAllAsync(IEnumerable<long> ids, string brokerId)
+        {
+            using (var context = _connectionFactory.CreateDataContext())
+            {
+                var query = context.Accounts
+                    .Where(x => x.BrokerId == brokerId)
+                    .Where(x => ids.Contains(x.Id));
+
+                var data = await query.ToListAsync();
+
+                return _mapper.Map<List<Account>>(data);
+            }
+        }
+
         public async Task<IReadOnlyList<Account>> GetAllAsync(string brokerId, string name, bool? isEnabled,
             ListSortDirection sortOrder = ListSortDirection.Ascending, long cursor = 0, int limit = 50)
         {

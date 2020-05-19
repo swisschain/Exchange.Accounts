@@ -20,6 +20,11 @@ namespace Accounts.Domain.Services
             return _accountRepository.GetAllAsync(brokerId);
         }
 
+        public Task<IReadOnlyList<Account>> GetAllAsync(IEnumerable<long> ids, string brokerId)
+        {
+            return _accountRepository.GetAllAsync(ids, brokerId);
+        }
+
         public Task<Account> GetByIdAsync(long id, string brokerId)
         {
             return _accountRepository.GetByIdAsync(id, brokerId);
