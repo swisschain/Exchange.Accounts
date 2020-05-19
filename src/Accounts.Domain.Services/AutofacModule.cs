@@ -17,6 +17,10 @@ namespace Accounts.Domain.Services
             builder.RegisterType<AccountService>()
                 .As<IAccountService>()
                 .SingleInstance();
+
+            builder.RegisterType<WalletService>()
+                .As<IWalletService>()
+                .SingleInstance();
         }
     }
 }

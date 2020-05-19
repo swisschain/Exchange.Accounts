@@ -8,9 +8,12 @@ namespace Swisschain.Exchange.Accounts.Client
     {
         public AccountsClient(AccountsClientSettings settings) : base(settings.ServiceAddress)
         {
-            Accounts = new AccountsApi(settings.ServiceAddress);
+            Account = new AccountApi(settings.ServiceAddress);
+            Wallet = new WalletsApi(settings.ServiceAddress);
         }
 
-        public IAccountsApi Accounts { get; }
+        public IAccountApi Account { get; }
+
+        public IWalletApi Wallet { get; }
     }
 }

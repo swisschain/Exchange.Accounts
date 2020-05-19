@@ -45,8 +45,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="..\..\.protos\accounts.proto" Link="Grpc\Protos\accounts.proto" />
-    <Protobuf Include="..\..\.protos\isalive.proto" Link="Grpc\Protos\isalive.proto" />
+    <Protobuf Include="..\..\.protos\accounts.proto" Link="Protos\accounts.proto" />
+    <Protobuf Include="..\..\.protos\wallets.proto" Link="Protos\wallets.proto" />
+    <Protobuf Include="..\..\.protos\isalive.proto" Link="Protos\isalive.proto" />
   </ItemGroup>
 
   <!--

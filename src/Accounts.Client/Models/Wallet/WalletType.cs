@@ -1,4 +1,4 @@
-﻿namespace Accounts.WebApi.Models.Wallet
+﻿namespace Swisschain.Exchange.Accounts.Client.Models.Wallet
 {
     public enum WalletType
     {

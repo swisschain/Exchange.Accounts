@@ -119,11 +119,11 @@ namespace Accounts.Domain.Persistence.Repositories
 
             await context.SaveChangesAsync();
 
-            var fundingWallet = new WalletEntity(entity.Id, WalletType.Funding.ToString(), WalletType.Funding, true);
+            var fundingWallet = new WalletEntity(entity.BrokerId, entity.Id, WalletType.Funding.ToString(), WalletType.Funding, true);
 
             await context.Wallets.AddAsync(fundingWallet);
 
-            var tradingWallet = new WalletEntity(entity.Id, WalletType.Trading.ToString(), WalletType.Trading, true);
+            var tradingWallet = new WalletEntity(entity.BrokerId, entity.Id, WalletType.Trading.ToString(), WalletType.Trading, true);
 
             await context.Wallets.AddAsync(tradingWallet);
 

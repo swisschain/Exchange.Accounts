@@ -25,6 +25,10 @@ namespace Accounts.Domain.Persistence
             builder.RegisterType<AccountRepository>()
                 .As<IAccountRepository>()
                 .SingleInstance();
+
+            builder.RegisterType<WalletRepository>()
+                .As<IWalletRepository>()
+                .SingleInstance();
         }
     }
 }

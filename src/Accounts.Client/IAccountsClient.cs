@@ -4,6 +4,8 @@ namespace Swisschain.Exchange.Accounts.Client
 {
     public interface IAccountsClient
     {
-        IAccountsApi Accounts { get; }
+        IAccountApi Account { get; }
+
+        IWalletApi Wallet { get; }
     }
 }

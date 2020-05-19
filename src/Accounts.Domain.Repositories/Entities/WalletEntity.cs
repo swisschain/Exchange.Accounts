@@ -25,8 +25,9 @@ namespace Accounts.Domain.Persistence.Entities
         {
         }
 
-        public WalletEntity(long accountId, string name, WalletType type, bool isEnabled)
+        public WalletEntity(string brokerId, long accountId, string name, WalletType type, bool isEnabled)
         {
+            BrokerId = brokerId;
             AccountId = accountId;
             Name = name;
             Type = type;

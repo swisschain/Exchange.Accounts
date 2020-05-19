@@ -1,8 +1,8 @@
 ﻿using Swisschain.Sdk.Server.WebApi.Pagination;
 
-namespace Accounts.WebApi.Models.Account
+namespace Accounts.WebApi.Models.Wallet
 {
-    public class AccountRequestManyModel : PaginationRequest<long>
+    public class WalletRequestManyModel : PaginationRequest<long>
     {
         public string Name { get; set; }
 

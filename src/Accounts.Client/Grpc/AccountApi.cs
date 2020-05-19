@@ -1,16 +1,16 @@
 ﻿using System.Threading.Tasks;
 using Swisschain.Exchange.Accounts.Client.Api;
 using Swisschain.Exchange.Accounts.Client.Common;
-using Swisschain.Exchange.Accounts.Client.Models.Accounts;
+using Swisschain.Exchange.Accounts.Client.Models.Account;
 using Swisschain.Exchange.Accounts.Contract;
 
 namespace Swisschain.Exchange.Accounts.Client.Grpc
 {
-    internal class AccountsApi : BaseGrpcClient, IAccountsApi
+    internal class AccountApi : BaseGrpcClient, IAccountApi
     {
         private readonly AccountsGrpc.AccountsGrpcClient _client;
 
-        public AccountsApi(string address) : base(address)
+        public AccountApi(string address) : base(address)
         {
             _client = new AccountsGrpc.AccountsGrpcClient(Channel);
         }

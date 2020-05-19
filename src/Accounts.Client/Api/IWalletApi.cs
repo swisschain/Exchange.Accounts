@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
-using Swisschain.Exchange.Accounts.Client.Models.Accounts;
+using Swisschain.Exchange.Accounts.Client.Models.Account;
 
 namespace Swisschain.Exchange.Accounts.Client.Api
 {
-    public interface IAccountsApi
+    public interface IAccountApi
     {
         Task<AccountModel> AddAsync(AccountAddModel accountAddModel);
     }

@@ -1,7 +1,6 @@
 ﻿using System;
-using Swisschain.Exchange.Accounts.Contract;
 
-namespace Swisschain.Exchange.Accounts.Client.Models.Accounts
+namespace Swisschain.Exchange.Accounts.Client.Models.Account
 {
     public class AccountModel
     {
@@ -21,7 +20,7 @@ namespace Swisschain.Exchange.Accounts.Client.Models.Accounts
         {
         }
 
-        public AccountModel(Account account)
+        public AccountModel(Contract.Account account)
         {
             Id = account.Id;
             BrokerId = account.BrokerId;

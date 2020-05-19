@@ -46,12 +46,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accounts.Domain.Persistence
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accounts.Domain.Services", "src\Accounts.Domain.Services\Accounts.Domain.Services.csproj", "{67FBBA1C-CABA-4CD5-9502-4730342176E2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".protos", ".protos", "{B1D08637-9391-4434-A8A6-37CEC97B41AF}"
-	ProjectSection(SolutionItems) = preProject
-		.protos\accounts.proto = .protos\accounts.proto
-		.protos\isalive.proto = .protos\isalive.proto
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accounts.Client", "src\Accounts.Client\Accounts.Client.csproj", "{3D27A163-A5E3-45F6-9B8F-E2949899ECF0}"
 EndProject
 Global

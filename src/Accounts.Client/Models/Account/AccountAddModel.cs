@@ -1,4 +1,4 @@
-﻿namespace Swisschain.Exchange.Accounts.Client.Models.Accounts
+﻿namespace Swisschain.Exchange.Accounts.Client.Models.Account
 {
     public class AccountAddModel
     {

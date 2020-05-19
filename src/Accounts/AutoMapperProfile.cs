@@ -1,5 +1,6 @@
 ﻿using Accounts.Domain.Entities;
 using Accounts.WebApi.Models.Account;
+using Accounts.WebApi.Models.Wallet;
 using AutoMapper;
 
 namespace Accounts
@@ -13,6 +14,13 @@ namespace Accounts
             CreateMap<AccountEditModel, Account>(MemberList.Source);
 
             CreateMap<AccountAddModel, Account>(MemberList.Source);
+
+
+            CreateMap<Wallet, WalletModel>(MemberList.Destination);
+
+            CreateMap<WalletEditModel, Wallet>(MemberList.Source);
+
+            CreateMap<WalletAddModel, Wallet>(MemberList.Source);
         }
     }
 }
