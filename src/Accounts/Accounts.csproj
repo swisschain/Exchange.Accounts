@@ -22,6 +22,11 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="8.6.2" />
+    <PackageReference Include="Google.Protobuf" Version="3.11.4" />
+    <PackageReference Include="Grpc.Tools" Version="2.28.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="JetBrains.Annotations" Version="2020.1.0" />
     <PackageReference Include="MassTransit" Version="6.2.2" />
     <PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="6.2.2" />
@@ -33,15 +38,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Accounts.Client\Accounts.Client.csproj" />
-    <ProjectReference Include="..\Accounts.Common\Accounts.Domain.csproj" />
-    <ProjectReference Include="..\Accounts.Repositories\Accounts.Repositories.csproj" />
-    <ProjectReference Include="..\Accounts.Services\Accounts.Services.csproj" />
+    <ProjectReference Include="..\Accounts.Domain.Repositories\Accounts.Domain.Persistence.csproj" />
+    <ProjectReference Include="..\Accounts.Domain.Services\Accounts.Domain.Services.csproj" />
+    <ProjectReference Include="..\Accounts.Domain\Accounts.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="..\..\.protos\accounts.proto" Link="Protos\accounts.proto" />
-    <Protobuf Include="..\..\.protos\isalive.proto" Link="Protos\isalive.proto" />
+    <Protobuf Include="..\..\.protos\accounts.proto" Link="Grpc\Protos\accounts.proto" />
+    <Protobuf Include="..\..\.protos\isalive.proto" Link="Grpc\Protos\isalive.proto" />
   </ItemGroup>
 
   <ItemGroup>

@@ -2,8 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Accounts.Common.Configuration;
+using Accounts.Domain.Persistence.Context;
 using Accounts.Grpc;
-using Accounts.Repositories.Context;
 using Autofac;
 using AutoMapper;
 using FluentValidation;
@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Routing;
 using Swisschain.Sdk.Server.Common;
-using AutofacModule = Accounts.Repositories.AutofacModule;
 
 namespace Accounts
 {
@@ -27,7 +26,8 @@ namespace Accounts
         protected override void ConfigureServicesExt(IServiceCollection services)
         {
             services
-                .AddAutoMapper(typeof(AutoMapperProfile), typeof(Repositories.AutoMapperProfile))
+                .AddAutoMapper(typeof(AutoMapperProfile),
+                               typeof(Domain.Persistence.AutoMapperProfile))
                 .AddControllersWithViews()
                 .AddFluentValidation(options =>
                 {
@@ -49,8 +49,8 @@ namespace Accounts
 
         protected override void ConfigureContainerExt(ContainerBuilder builder)
         {
-            builder.RegisterModule(new Services.AutofacModule(Config));
-            builder.RegisterModule(new AutofacModule(Config));
+            builder.RegisterModule(new Domain.Services.AutofacModule(Config));
+            builder.RegisterModule(new Domain.Persistence.AutofacModule(Config));
         }
 
         protected override void RegisterEndpoints(IEndpointRouteBuilder endpoints)

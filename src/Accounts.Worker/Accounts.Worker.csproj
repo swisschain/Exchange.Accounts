@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Accounts.Common\Accounts.Domain.csproj" />
+    <ProjectReference Include="..\Accounts.Domain\Accounts.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -20,8 +20,7 @@ namespace Swisschain.Exchange.Accounts.Client.Grpc
             var request = new AddAccountRequest();
             request.BrokerId = accountAddModel.BrokerId;
             request.Name = accountAddModel.Name;
-            request.Type = (AccountType)accountAddModel.Type;
-            request.IsDisabled = accountAddModel.IsDisabled;
+            request.IsEnabled = accountAddModel.IsEnabled;
 
             var response = await _client.AddAsync(request);
 

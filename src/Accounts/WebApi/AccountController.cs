@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Mvc;
 using Swisschain.Sdk.Server.Authorization;
 using Swisschain.Sdk.Server.WebApi.Common;
 using Swisschain.Sdk.Server.WebApi.Pagination;
-using Account = Accounts.WebApi.Models.Account.Account;
 
 namespace Accounts.WebApi
 {
@@ -30,9 +29,9 @@ namespace Accounts.WebApi
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(Paginated<Account, string>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Paginated<AccountModel, long>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ModelStateDictionaryErrorResponse), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetManyAsync([FromQuery] AccountRequestMany request)
+        public async Task<IActionResult> GetManyAsync([FromQuery] AccountRequestManyModel request)
         {
             var sortOrder = request.Order == PaginationOrder.Asc
                 ? ListSortDirection.Ascending
@@ -42,49 +41,49 @@ namespace Accounts.WebApi
 
             var accounts = await _accountService.GetAllAsync(brokerId, request.Name, request.IsDisabled, sortOrder, request.Cursor, request.Limit);
 
-            var result = _mapper.Map<List<Account>>(accounts);
+            var result = _mapper.Map<List<AccountModel>>(accounts);
 
             return Ok(result.Paginate(request, Url, x => x.Id));
         }
 
-        [HttpGet("{accountId}")]
-        [ProducesResponseType(typeof(Account), StatusCodes.Status200OK)]
+        [HttpGet("{id}")]
+        [ProducesResponseType(typeof(AccountModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetByIdAsync(string accountId)
+        public async Task<IActionResult> GetByIdAsync(long id)
         {
             var brokerId = User.GetTenantId();
 
-            var account = await _accountService.GetByIdAsync(brokerId, accountId);
+            var account = await _accountService.GetByIdAsync(id, brokerId);
 
             if (account == null)
                 return NotFound();
 
-            var model = _mapper.Map<Account>(account);
+            var model = _mapper.Map<AccountModel>(account);
 
             return Ok(model);
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(Account), StatusCodes.Status200OK)]
-        public async Task<IActionResult> AddAsync(AccountAdd account)
+        [ProducesResponseType(typeof(AccountModel), StatusCodes.Status200OK)]
+        public async Task<IActionResult> AddAsync(AccountAddModel account)
         {
-            var domain = _mapper.Map<Domain.Entities.Account>(account);
+            var domain = _mapper.Map<Account>(account);
 
             domain.BrokerId = User.GetTenantId();
 
             var newDomain = await _accountService.AddAsync(domain);
 
-            var newViewModel = _mapper.Map<Account>(newDomain);
+            var newViewModel = _mapper.Map<AccountModel>(newDomain);
 
             return Ok(newViewModel);
         }
 
         [HttpPut]
-        [ProducesResponseType(typeof(Account), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(AccountModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> UpdateAsync([FromBody] AccountEdit model)
+        public async Task<IActionResult> UpdateAsync([FromBody] AccountEditModel model)
         {
-            var domain = _mapper.Map<Domain.Entities.Account>(model);
+            var domain = _mapper.Map<Account>(model);
 
             domain.BrokerId = User.GetTenantId();
 
@@ -93,19 +92,9 @@ namespace Accounts.WebApi
             if (updated == null)
                 return NotFound();
 
-            var newModel = _mapper.Map<Account>(updated);
+            var newModel = _mapper.Map<AccountModel>(updated);
 
             return Ok(newModel);
-        }
-
-        [HttpDelete("{accountId}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> DeleteAsync(string accountId)
-        {
-            await _accountService.DeleteAsync(accountId);
-
-            return Ok();
         }
     }
 }

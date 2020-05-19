@@ -5,15 +5,13 @@ namespace Swisschain.Exchange.Accounts.Client.Models.Accounts
 {
     public class AccountModel
     {
-        public string Id { get; set; }
+        public long Id { get; set; }
 
         public string BrokerId { get; set; }
 
         public string Name { get; set; }
 
-        public bool IsDisabled { get; set; }
-
-        public AccountTypeModel Type { get; set; }
+        public bool IsEnabled { get; set; }
 
         public DateTime Created { get; set; }
 
@@ -28,8 +26,7 @@ namespace Swisschain.Exchange.Accounts.Client.Models.Accounts
             Id = account.Id;
             BrokerId = account.BrokerId;
             Name = account.Name;
-            IsDisabled = account.IsDisabled;
-            Type = (AccountTypeModel)account.Type;
+            IsEnabled = account.IsEnabled;
             Created = account.Created.ToDateTime();
             Modified = account.Modified.ToDateTime();
         }

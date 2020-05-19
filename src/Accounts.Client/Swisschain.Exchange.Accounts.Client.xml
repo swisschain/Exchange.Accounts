@@ -16,11 +16,8 @@
         <member name="F:Swisschain.Exchange.Accounts.Contract.AddAccountRequest.NameFieldNumber">
             <summary>Field number for the "name" field.</summary>
         </member>
-        <member name="F:Swisschain.Exchange.Accounts.Contract.AddAccountRequest.IsDisabledFieldNumber">
-            <summary>Field number for the "is_disabled" field.</summary>
-        </member>
-        <member name="F:Swisschain.Exchange.Accounts.Contract.AddAccountRequest.TypeFieldNumber">
-            <summary>Field number for the "type" field.</summary>
+        <member name="F:Swisschain.Exchange.Accounts.Contract.AddAccountRequest.IsEnabledFieldNumber">
+            <summary>Field number for the "is_enabled" field.</summary>
         </member>
         <member name="F:Swisschain.Exchange.Accounts.Contract.AddAccountResponse.AccountFieldNumber">
             <summary>Field number for the "account" field.</summary>
@@ -34,11 +31,8 @@
         <member name="F:Swisschain.Exchange.Accounts.Contract.Account.NameFieldNumber">
             <summary>Field number for the "name" field.</summary>
         </member>
-        <member name="F:Swisschain.Exchange.Accounts.Contract.Account.IsDisabledFieldNumber">
-            <summary>Field number for the "is_disabled" field.</summary>
-        </member>
-        <member name="F:Swisschain.Exchange.Accounts.Contract.Account.TypeFieldNumber">
-            <summary>Field number for the "type" field.</summary>
+        <member name="F:Swisschain.Exchange.Accounts.Contract.Account.IsEnabledFieldNumber">
+            <summary>Field number for the "is_enabled" field.</summary>
         </member>
         <member name="F:Swisschain.Exchange.Accounts.Contract.Account.CreatedFieldNumber">
             <summary>Field number for the "created" field.</summary>

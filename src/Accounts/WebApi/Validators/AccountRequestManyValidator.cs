@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 namespace Accounts.WebApi.Validators
 {
     [UsedImplicitly]
-    public class AccountRequestManyValidator : AbstractValidator<AccountRequestMany>
+    public class AccountRequestManyValidator : AbstractValidator<AccountRequestManyModel>
     {
         public AccountRequestManyValidator()
         {

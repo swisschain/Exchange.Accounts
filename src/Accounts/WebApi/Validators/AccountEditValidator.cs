@@ -5,15 +5,13 @@ using JetBrains.Annotations;
 namespace Accounts.WebApi.Validators
 {
     [UsedImplicitly]
-    public class AccountEditValidator : AbstractValidator<AccountEdit>
+    public class AccountEditValidator : AbstractValidator<AccountEditModel>
     {
         public AccountEditValidator()
         {
             RuleFor(o => o.Id)
-                .NotEmpty()
-                .WithMessage("Account identifier is required.")
-                .MaximumLength(36)
-                .WithMessage("Account identifier must be less than 36 characters.");
+                .GreaterThan(0)
+                .WithMessage("Account identifier is required.");
 
             RuleFor(o => o.Name)
                 .NotEmpty()

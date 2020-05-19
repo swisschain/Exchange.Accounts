@@ -4,7 +4,6 @@ using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using Swisschain.Exchange.Accounts.Contract;
 using Account = Accounts.Domain.Entities.Account;
-using AccountType = Accounts.Domain.Entities.Enums.AccountType;
 
 namespace Accounts.Grpc
 {
@@ -22,8 +21,7 @@ namespace Accounts.Grpc
             var domain = new Account();
             domain.BrokerId = request.BrokerId;
             domain.Name = request.Name;
-            domain.Type = (AccountType)request.Type;
-            domain.IsDisabled = request.IsDisabled;
+            domain.IsEnabled = request.IsEnabled;
 
             domain = await _accountsService.AddAsync(domain);
 
@@ -32,8 +30,7 @@ namespace Accounts.Grpc
             model.Id = domain.Id;
             model.BrokerId = domain.BrokerId;
             model.Name = domain.Name;
-            model.Type = (Swisschain.Exchange.Accounts.Contract.AccountType)domain.Type;
-            model.IsDisabled = domain.IsDisabled;
+            model.IsEnabled = domain.IsEnabled;
             model.Created = Timestamp.FromDateTime(domain.Created);
             model.Modified = Timestamp.FromDateTime(domain.Modified);
 

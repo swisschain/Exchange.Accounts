@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+
+    <AssemblyName>Exchange.AccountsTests</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector" Version="1.2.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Lykke.HttpClientGenerator" Version="2.3.0" />
+    <PackageReference Include="Refit" Version="4.6.48" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Accounts.Client\Accounts.Client.csproj" />
+    <ProjectReference Include="..\..\src\Accounts.Domain.Repositories\Accounts.Domain.Persistence.csproj" />
+    <ProjectReference Include="..\..\src\Accounts.Domain.Services\Accounts.Domain.Services.csproj" />
+    <ProjectReference Include="..\..\src\Accounts.Domain\Accounts.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Accounts\Accounts.csproj" />
+  </ItemGroup>
+
+</Project>
