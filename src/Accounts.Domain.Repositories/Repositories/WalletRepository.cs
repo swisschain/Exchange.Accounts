@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Accounts.Domain.Entities;
+using Accounts.Domain.Entities.Enums;
 using Accounts.Domain.Persistence.Context;
 using Accounts.Domain.Persistence.Entities;
 using Accounts.Domain.Repositories;
@@ -105,6 +106,9 @@ namespace Accounts.Domain.Persistence.Repositories
 
         public async Task<Wallet> InsertAsync(Wallet wallet)
         {
+            if (wallet.Type != WalletType.Api && wallet.Type != WalletType.Hft)
+                throw new ArgumentException($"Wallet with type '{wallet.Type}' can't be added.");
+
             await using var context = _connectionFactory.CreateDataContext();
 
             var entity = _mapper.Map<WalletEntity>(wallet);
@@ -127,13 +131,20 @@ namespace Accounts.Domain.Persistence.Repositories
 
             var entity = await GetAsync(wallet.Id, wallet.BrokerId, context);
 
+            if (entity.Type != WalletType.Api && entity.Type != WalletType.Hft)
+                throw new ArgumentException($"Wallet with type '{wallet.Type}' can't be updated.");
+
             // save fields that has not be updated
             var created = entity.Created;
+            var accountId = entity.AccountId;
+            var type = entity.Type;
 
             _mapper.Map(wallet, entity);
 
             // restore fields that has not be updated
             entity.Created = created;
+            entity.AccountId = accountId;
+            entity.Type = type;
 
             entity.Modified = DateTime.UtcNow;
 

@@ -4,6 +4,10 @@
     {
         public string Name { get; set; }
 
+        public long AccountId { get; set; }
+
         public bool IsEnabled { get; set; }
+
+        public WalletType Type { get; set; }
     }
 }

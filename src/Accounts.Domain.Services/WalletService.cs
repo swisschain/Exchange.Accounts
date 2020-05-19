@@ -40,17 +40,11 @@ namespace Accounts.Domain.Services
 
         public Task<Wallet> AddAsync(Wallet wallet)
         {
-            if (wallet.Type != WalletType.Api && wallet.Type != WalletType.Hft)
-                throw new ArgumentException($"Wallet with type '{wallet.Type}' can't be added.", nameof(wallet));
-
             return _walletRepository.InsertAsync(wallet);
         }
 
         public Task<Wallet> UpdateAsync(Wallet wallet)
         {
-            if (wallet.Type != WalletType.Api && wallet.Type != WalletType.Hft)
-                throw new ArgumentException($"Wallet with type '{wallet.Type}' can't be updated.", nameof(wallet));
-
             return _walletRepository.UpdateAsync(wallet);
         }
 

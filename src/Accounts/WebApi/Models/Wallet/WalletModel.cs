@@ -6,7 +6,11 @@ namespace Accounts.WebApi.Models.Wallet
     {
         public long Id { get; set; }
 
+        public long AccountId { get; set; }
+
         public string Name { get; set; }
+
+        public WalletType Type { get; set; }
 
         public bool IsEnabled { get; set; }
 
