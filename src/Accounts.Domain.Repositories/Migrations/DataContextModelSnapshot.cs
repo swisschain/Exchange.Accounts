@@ -66,6 +66,11 @@ namespace Accounts.Domain.Persistence.Migrations
                     b.Property<long>("AccountId")
                         .HasColumnType("bigint");
 
+                    b.Property<string>("BrokerId")
+                        .IsRequired()
+                        .HasColumnType("character varying(36)")
+                        .HasMaxLength(36);
+
                     b.Property<DateTimeOffset>("Created")
                         .HasColumnType("timestamp with time zone");
 

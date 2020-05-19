@@ -36,6 +36,7 @@ namespace Accounts.Domain.Persistence.Migrations
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    BrokerId = table.Column<string>(maxLength: 36, nullable: false),
                     AccountId = table.Column<long>(nullable: false),
                     Name = table.Column<string>(maxLength: 36, nullable: false),
                     Type = table.Column<string>(maxLength: 16, nullable: false),

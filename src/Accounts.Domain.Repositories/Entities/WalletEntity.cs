@@ -7,6 +7,8 @@ namespace Accounts.Domain.Persistence.Entities
     {
         public long Id { get; set; }
 
+        public string BrokerId { get; set; }
+
         public long AccountId { get; set; }
 
         public string Name { get; set; }
@@ -35,7 +37,8 @@ namespace Accounts.Domain.Persistence.Entities
 
         public override string ToString()
         {
-            return $"Id={Id}, AccountId={AccountId}, Name={Name}, Type={Type}, IsEnabled={IsEnabled}, Created={Created}, Modified={Modified}";
+            return $"Id={Id}, BrokerId={BrokerId}, AccountId={AccountId}, Name={Name}, " +
+                   $"Type={Type}, IsEnabled={IsEnabled}, Created={Created}, Modified={Modified}";
         }
     }
 }

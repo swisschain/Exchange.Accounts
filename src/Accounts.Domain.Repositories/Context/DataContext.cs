@@ -89,6 +89,13 @@ namespace Accounts.Domain.Persistence.Context
                 .HasKey(c => new { c.Id });
 
             modelBuilder.Entity<WalletEntity>()
+                .Property(x => x.BrokerId)
+                .HasMaxLength(36)
+                .IsRequired();
+
+            // AccountId set in AccountEntity
+
+            modelBuilder.Entity<WalletEntity>()
                 .Property(x => x.Name)
                 .HasMaxLength(36)
                 .IsRequired();
@@ -106,6 +113,10 @@ namespace Accounts.Domain.Persistence.Context
             modelBuilder.Entity<WalletEntity>()
                 .Property(x => x.Modified)
                 .IsRequired();
+
+
+            modelBuilder.Entity<AccountEntity>()
+                .HasIndex(x => new { x.BrokerId, x.Name }).IsUnique();
         }
     }
 }

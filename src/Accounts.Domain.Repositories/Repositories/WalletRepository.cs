@@ -14,50 +14,50 @@ using Microsoft.Extensions.Logging;
 
 namespace Accounts.Domain.Persistence.Repositories
 {
-    public class AccountRepository : IAccountRepository
+    public class WalletRepository : IWalletRepository
     {
         private readonly ConnectionFactory _connectionFactory;
         private readonly IMapper _mapper;
-        private readonly ILogger<AccountRepository> _logger;
+        private readonly ILogger<WalletRepository> _logger;
 
-        public AccountRepository(ConnectionFactory connectionFactory,
-            IMapper mapper, ILogger<AccountRepository> logger)
+        public WalletRepository(ConnectionFactory connectionFactory,
+            IMapper mapper, ILogger<WalletRepository> logger)
         {
             _connectionFactory = connectionFactory;
             _mapper = mapper;
             _logger = logger;
         }
 
-        public async Task<IReadOnlyList<Account>> GetAllAsync(string brokerId)
+        public async Task<IReadOnlyList<Wallet>> GetAllAsync(string brokerId)
         {
             await using var context = _connectionFactory.CreateDataContext();
 
-            var entities = await context.Accounts
+            var entities = await context.Wallets
                 .Where(x => x.BrokerId == brokerId)
                 .ToListAsync();
 
-            return _mapper.Map<Account[]>(entities);
+            return _mapper.Map<Wallet[]>(entities);
         }
 
-        public async Task<IReadOnlyList<Account>> GetAllAsync(IEnumerable<long> ids, string brokerId)
+        public async Task<IReadOnlyList<Wallet>> GetAllAsync(IEnumerable<long> ids, string brokerId)
         {
             await using var context = _connectionFactory.CreateDataContext();
 
-            var query = context.Accounts
+            var query = context.Wallets
                 .Where(x => x.BrokerId == brokerId)
                 .Where(x => ids.Contains(x.Id));
 
             var data = await query.ToListAsync();
 
-            return _mapper.Map<List<Account>>(data);
+            return _mapper.Map<List<Wallet>>(data);
         }
 
-        public async Task<IReadOnlyList<Account>> GetAllAsync(string brokerId, string name, bool? isEnabled,
+        public async Task<IReadOnlyList<Wallet>> GetAllAsync(string brokerId, string name, bool? isEnabled,
             ListSortDirection sortOrder = ListSortDirection.Ascending, long cursor = 0, int limit = 50)
         {
             await using var context = _connectionFactory.CreateDataContext();
 
-            IQueryable<AccountEntity> query = context.Accounts;
+            IQueryable<WalletEntity> query = context.Wallets;
 
             query = query.Where(x => x.BrokerId.ToUpper() == brokerId.ToUpper());
 
@@ -86,14 +86,14 @@ namespace Accounts.Domain.Persistence.Repositories
 
             var entities = await query.ToListAsync();
 
-            return _mapper.Map<Account[]>(entities);
+            return _mapper.Map<Wallet[]>(entities);
         }
 
-        public async Task<Account> GetByIdAsync(long id, string brokerId)
+        public async Task<Wallet> GetByIdAsync(long id, string brokerId)
         {
             await using var context = _connectionFactory.CreateDataContext();
             
-            IQueryable<AccountEntity> query = context.Accounts;
+            IQueryable<WalletEntity> query = context.Wallets;
 
             query = query.Where(x => x.BrokerId.ToUpper() == brokerId.ToUpper());
 
@@ -101,21 +101,21 @@ namespace Accounts.Domain.Persistence.Repositories
 
             var entity = await query.SingleOrDefaultAsync();
 
-            return _mapper.Map<Account>(entity);
+            return _mapper.Map<Wallet>(entity);
         }
 
-        public async Task<Account> InsertAsync(Account account)
+        public async Task<Wallet> InsertAsync(Wallet account)
         {
             await using var context = _connectionFactory.CreateDataContext();
 
             await using var transaction = await context.Database.BeginTransactionAsync();
 
-            var entity = _mapper.Map<AccountEntity>(account);
+            var entity = _mapper.Map<WalletEntity>(account);
 
             entity.Created = DateTime.UtcNow;
             entity.Modified = entity.Created;
 
-            await context.Accounts.AddAsync(entity);
+            await context.Wallets.AddAsync(entity);
 
             await context.SaveChangesAsync();
 
@@ -131,12 +131,12 @@ namespace Accounts.Domain.Persistence.Repositories
 
             await transaction.CommitAsync();
 
-            _logger.LogInformation("Account has been created {@context}", entity);
+            _logger.LogInformation("Wallet has been created {@context}", entity);
 
-            return _mapper.Map<Account>(entity);
+            return _mapper.Map<Wallet>(entity);
         }
 
-        public async Task<Account> UpdateAsync(Account account)
+        public async Task<Wallet> UpdateAsync(Wallet account)
         {
             await using var context = _connectionFactory.CreateDataContext();
 
@@ -154,9 +154,9 @@ namespace Accounts.Domain.Persistence.Repositories
 
             await context.SaveChangesAsync();
 
-            _logger.LogInformation("Account has been updated {@context}", entity);
+            _logger.LogInformation("Wallet has been updated {@context}", entity);
 
-            return _mapper.Map<Account>(entity);
+            return _mapper.Map<Wallet>(entity);
         }
 
         public async Task DeleteAsync(long id, string brokerId)
@@ -170,9 +170,9 @@ namespace Accounts.Domain.Persistence.Repositories
             await context.SaveChangesAsync();
         }
 
-        private async Task<AccountEntity> GetAsync(long id, string brokerId, DataContext context)
+        private async Task<WalletEntity> GetAsync(long id, string brokerId, DataContext context)
         {
-            IQueryable<AccountEntity> query = context.Accounts;
+            IQueryable<WalletEntity> query = context.Wallets;
 
             var existed = await query
                 .Where(x => x.Id == id)
