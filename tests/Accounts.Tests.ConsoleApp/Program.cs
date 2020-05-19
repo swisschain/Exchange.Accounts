@@ -16,9 +16,9 @@ namespace TestClient
             var newAccount = new AccountAddModel();
             newAccount.BrokerId = "83829aa1-5888-45e4-997c-b133e58b7ab8";
             newAccount.Name = "Exchange.Accounts.Tests";
-            newAccount.IsEnabled = false;
+            newAccount.IsEnabled = true;
 
-            var cashOperationsFees = await client.Accounts.AddAsync(newAccount);
+            var accountModel = await client.Accounts.AddAsync(newAccount);
 
             Console.WriteLine("Finished!");
             Console.ReadLine();
