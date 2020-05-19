@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Accounts.Domain.Entities;
-using Accounts.Domain.Entities.Enums;
 using Accounts.Domain.Persistence.Context;
 using Accounts.Domain.Persistence.Entities;
 using Accounts.Domain.Repositories;
@@ -104,13 +103,11 @@ namespace Accounts.Domain.Persistence.Repositories
             return _mapper.Map<Wallet>(entity);
         }
 
-        public async Task<Wallet> InsertAsync(Wallet account)
+        public async Task<Wallet> InsertAsync(Wallet wallet)
         {
             await using var context = _connectionFactory.CreateDataContext();
 
-            await using var transaction = await context.Database.BeginTransactionAsync();
-
-            var entity = _mapper.Map<WalletEntity>(account);
+            var entity = _mapper.Map<WalletEntity>(wallet);
 
             entity.Created = DateTime.UtcNow;
             entity.Modified = entity.Created;
@@ -119,33 +116,21 @@ namespace Accounts.Domain.Persistence.Repositories
 
             await context.SaveChangesAsync();
 
-            var fundingWallet = new WalletEntity(entity.Id, WalletType.Funding.ToString(), WalletType.Funding, true);
-
-            await context.Wallets.AddAsync(fundingWallet);
-
-            var tradingWallet = new WalletEntity(entity.Id, WalletType.Trading.ToString(), WalletType.Trading, true);
-
-            await context.Wallets.AddAsync(tradingWallet);
-
-            await context.SaveChangesAsync();
-
-            await transaction.CommitAsync();
-
             _logger.LogInformation("Wallet has been created {@context}", entity);
 
             return _mapper.Map<Wallet>(entity);
         }
 
-        public async Task<Wallet> UpdateAsync(Wallet account)
+        public async Task<Wallet> UpdateAsync(Wallet wallet)
         {
             await using var context = _connectionFactory.CreateDataContext();
 
-            var entity = await GetAsync(account.Id, account.BrokerId, context);
+            var entity = await GetAsync(wallet.Id, wallet.BrokerId, context);
 
             // save fields that has not be updated
             var created = entity.Created;
 
-            _mapper.Map(account, entity);
+            _mapper.Map(wallet, entity);
 
             // restore fields that has not be updated
             entity.Created = created;
