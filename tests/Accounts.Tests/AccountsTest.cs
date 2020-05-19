@@ -10,7 +10,7 @@ namespace Accounts.Tests
 {
     public class AccountsTest
     {
-        [Fact]
+        [Fact(Skip = "manual")]
         public async Task Test()
         {
             var url = "http://localhost:5000";
