@@ -22,7 +22,7 @@ namespace Accounts.Domain.Persistence.Context
 
         internal DbSet<AccountEntity> Accounts { get; set; }
 
-        internal DbSet<AccountEntity> Wallets { get; set; }
+        internal DbSet<WalletEntity> Wallets { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -95,6 +95,7 @@ namespace Accounts.Domain.Persistence.Context
 
             modelBuilder.Entity<WalletEntity>()
                 .Property(x => x.Type)
+                .HasConversion<string>()
                 .HasMaxLength(16)
                 .IsRequired();
 

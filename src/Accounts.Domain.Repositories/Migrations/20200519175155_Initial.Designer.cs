@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Accounts.Domain.Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200519163128_Initial")]
+    [Migration("20200519175155_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -68,22 +68,23 @@ namespace Accounts.Domain.Persistence.Migrations
                     b.Property<long>("AccountId")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp without time zone");
+                    b.Property<DateTimeOffset>("Created")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("IsEnabled")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime>("Modified")
-                        .HasColumnType("timestamp without time zone");
+                    b.Property<DateTimeOffset>("Modified")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("character varying(36)")
                         .HasMaxLength(36);
 
-                    b.Property<int>("Type")
-                        .HasColumnType("integer")
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("character varying(16)")
                         .HasMaxLength(16);
 
                     b.HasKey("Id");

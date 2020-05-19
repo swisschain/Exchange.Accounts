@@ -2,7 +2,7 @@
 
 namespace Accounts.WebApi.Models.Wallet
 {
-    public class Wallet
+    public class WalletModel
     {
         public Guid Id { get; set; }
 
@@ -10,8 +10,8 @@ namespace Accounts.WebApi.Models.Wallet
 
         public WalletType Type { get; set; }
 
-        public DateTimeOffset Created { get; set; }
+        public DateTime Created { get; set; }
 
-        public DateTimeOffset Modified { get; set; }
+        public DateTime Modified { get; set; }
     }
 }

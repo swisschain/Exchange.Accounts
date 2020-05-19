@@ -18,5 +18,10 @@ namespace Accounts.Domain.Entities
         public DateTime Created { get; set; }
 
         public DateTime Modified { get; set; }
+
+        public override string ToString()
+        {
+            return $"Id={Id}, BrokerId={BrokerId}, Name={Name}, Wallets={Wallets.Count}, IsEnabled={IsEnabled}, Created={Created}, Modified={Modified}";
+        }
     }
 }

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Accounts.Domain.Entities;
+using Accounts.Domain.Entities.Enums;
 using Accounts.Domain.Persistence.Context;
 using Accounts.Domain.Persistence.Entities;
 using Accounts.Domain.Repositories;
@@ -103,6 +104,16 @@ namespace Accounts.Domain.Persistence.Repositories
                 entity.Modified = entity.Created;
 
                 await context.Accounts.AddAsync(entity);
+
+                await context.SaveChangesAsync();
+
+                var fundingWallet = new WalletEntity(entity.Id, "Funding", WalletType.Funding, true);
+
+                await context.Wallets.AddAsync(fundingWallet);
+
+                var tradingWallet = new WalletEntity(entity.Id, "Trading", WalletType.Trading, true);
+
+                await context.Wallets.AddAsync(tradingWallet);
 
                 await context.SaveChangesAsync();
 

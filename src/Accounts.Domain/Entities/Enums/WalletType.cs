@@ -8,7 +8,7 @@
         
         Hft = 2,
 
-        Funds = 3,
+        Funding = 3,
 
         Trading = 4
     }

@@ -38,10 +38,10 @@ namespace Accounts.Domain.Persistence.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     AccountId = table.Column<long>(nullable: false),
                     Name = table.Column<string>(maxLength: 36, nullable: false),
-                    Type = table.Column<int>(maxLength: 16, nullable: false),
+                    Type = table.Column<string>(maxLength: 16, nullable: false),
                     IsEnabled = table.Column<bool>(nullable: false),
-                    Created = table.Column<DateTime>(nullable: false),
-                    Modified = table.Column<DateTime>(nullable: false)
+                    Created = table.Column<DateTimeOffset>(nullable: false),
+                    Modified = table.Column<DateTimeOffset>(nullable: false)
                 },
                 constraints: table =>
                 {

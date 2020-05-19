@@ -18,5 +18,10 @@ namespace Accounts.Domain.Persistence.Entities
         public DateTimeOffset Created { get; set; }
 
         public DateTimeOffset Modified { get; set; }
+
+        public override string ToString()
+        {
+            return $"Id={Id}, BrokerId={BrokerId}, Name={Name}, Wallets={Wallets.Count}, IsEnabled={IsEnabled}, Created={Created}, Modified={Modified}";
+        }
     }
 }
