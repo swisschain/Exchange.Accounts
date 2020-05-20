@@ -27,7 +27,6 @@ namespace Accounts.Tests.ConsoleApp
 
             //await GetWallet(client, brokerId);
 
-
             Console.WriteLine("Finished!");
             Console.ReadLine();
         }
