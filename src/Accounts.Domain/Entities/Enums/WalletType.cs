@@ -4,12 +4,10 @@
     {
         None = 0,
 
-        Funding = 1,
+        Main = 1,
 
-        Trading = 2,
-
-        Api = 3,
+        Api = 2,
         
-        Hft = 4
+        Hft = 3
     }
 }

@@ -119,13 +119,9 @@ namespace Accounts.Domain.Persistence.Repositories
 
             await context.SaveChangesAsync();
 
-            var fundingWallet = new WalletEntity(entity.BrokerId, entity.Id, WalletType.Funding.ToString(), WalletType.Funding, true);
+            var mainWallet = new WalletEntity(entity.BrokerId, entity.Id, WalletType.Main.ToString(), WalletType.Main, true);
 
-            await context.Wallets.AddAsync(fundingWallet);
-
-            var tradingWallet = new WalletEntity(entity.BrokerId, entity.Id, WalletType.Trading.ToString(), WalletType.Trading, true);
-
-            await context.Wallets.AddAsync(tradingWallet);
+            await context.Wallets.AddAsync(mainWallet);
 
             await context.SaveChangesAsync();
 
