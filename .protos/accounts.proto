@@ -9,6 +9,8 @@ import "google/protobuf/timestamp.proto";
 
 service AccountsGrpc {
     rpc Add (AddAccountRequest) returns (AddAccountResponse);
+    rpc Get (GetAccountByIdRequest) returns (GetAccountResponse);
+    rpc GetAll (GetAllAccountsByIdsRequest) returns (GetAccountsResponse);
 }
 
 message AddAccountRequest {
@@ -18,6 +20,24 @@ message AddAccountRequest {
 }
 
 message AddAccountResponse {
+    Account account = 1;
+}
+
+message GetAllAccountsByIdsRequest {
+    repeated int64 ids = 1;
+    string brokerId = 2;
+}
+
+message GetAccountsResponse {
+    repeated Account accounts = 1;
+}
+
+message GetAccountByIdRequest {
+    int64 id = 1;
+    string brokerId = 2;
+}
+
+message GetAccountResponse {
     Account account = 1;
 }
 

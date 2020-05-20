@@ -22,6 +22,24 @@
         <member name="F:Swisschain.Exchange.Accounts.Contract.AddAccountResponse.AccountFieldNumber">
             <summary>Field number for the "account" field.</summary>
         </member>
+        <member name="F:Swisschain.Exchange.Accounts.Contract.GetAllAccountsByIdsRequest.IdsFieldNumber">
+            <summary>Field number for the "ids" field.</summary>
+        </member>
+        <member name="F:Swisschain.Exchange.Accounts.Contract.GetAllAccountsByIdsRequest.BrokerIdFieldNumber">
+            <summary>Field number for the "brokerId" field.</summary>
+        </member>
+        <member name="F:Swisschain.Exchange.Accounts.Contract.GetAccountsResponse.AccountsFieldNumber">
+            <summary>Field number for the "accounts" field.</summary>
+        </member>
+        <member name="F:Swisschain.Exchange.Accounts.Contract.GetAccountByIdRequest.IdFieldNumber">
+            <summary>Field number for the "id" field.</summary>
+        </member>
+        <member name="F:Swisschain.Exchange.Accounts.Contract.GetAccountByIdRequest.BrokerIdFieldNumber">
+            <summary>Field number for the "brokerId" field.</summary>
+        </member>
+        <member name="F:Swisschain.Exchange.Accounts.Contract.GetAccountResponse.AccountFieldNumber">
+            <summary>Field number for the "account" field.</summary>
+        </member>
         <member name="F:Swisschain.Exchange.Accounts.Contract.Account.IdFieldNumber">
             <summary>Field number for the "id" field.</summary>
         </member>

@@ -38,6 +38,9 @@ namespace Swisschain.Exchange.Accounts.Client.Grpc
 
             var response = await _client.GetAsync(request);
 
+            if (response.Wallet == null)
+                return null;
+
             var result = new WalletModel(response.Wallet);
 
             return result;

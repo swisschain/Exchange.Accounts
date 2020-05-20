@@ -3,7 +3,6 @@ using Accounts.Domain.Services;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using Swisschain.Exchange.Accounts.Contract;
-using Account = Accounts.Domain.Entities.Account;
 
 namespace Accounts.Grpc
 {
@@ -16,9 +15,41 @@ namespace Accounts.Grpc
             _accountsService = accountsService;
         }
 
+        public override async Task<GetAccountsResponse> GetAll(GetAllAccountsByIdsRequest request, ServerCallContext context)
+        {
+            var domains = await _accountsService.GetAllAsync(request.Ids, request.BrokerId);
+
+            var response = new GetAccountsResponse();
+
+            foreach (var domain in domains)
+            {
+                var contract = Map(domain);
+
+                response.Accounts.Add(contract);
+            }
+
+            return response;
+        }
+
+        public override async Task<GetAccountResponse> Get(GetAccountByIdRequest request, ServerCallContext context)
+        {
+            var domain = await _accountsService.GetByIdAsync(request.Id, request.BrokerId);
+
+            var response = new GetAccountResponse();
+
+            if (domain == null)
+                return response;
+
+            var contract = Map(domain);
+
+            response.Account = contract;
+
+            return response;
+        }
+
         public override async Task<AddAccountResponse> Add(AddAccountRequest request, ServerCallContext context)
         {
-            var domain = new Account();
+            var domain = new Domain.Entities.Account();
             domain.BrokerId = request.BrokerId;
             domain.Name = request.Name;
             domain.IsEnabled = request.IsEnabled;
@@ -26,17 +57,33 @@ namespace Accounts.Grpc
             domain = await _accountsService.AddAsync(domain);
 
             var response = new AddAccountResponse();
-            var model = new Swisschain.Exchange.Accounts.Contract.Account();
-            model.Id = domain.Id;
-            model.BrokerId = domain.BrokerId;
-            model.Name = domain.Name;
-            model.IsEnabled = domain.IsEnabled;
-            model.Created = Timestamp.FromDateTime(domain.Created);
-            model.Modified = Timestamp.FromDateTime(domain.Modified);
 
-            response.Account = model;
+            var contract = new Account();
+            
+            contract.Id = domain.Id;
+            contract.BrokerId = domain.BrokerId;
+            contract.Name = domain.Name;
+            contract.IsEnabled = domain.IsEnabled;
+            contract.Created = Timestamp.FromDateTime(domain.Created);
+            contract.Modified = Timestamp.FromDateTime(domain.Modified);
+
+            response.Account = contract;
 
             return response;
+        }
+
+        private Account Map(Domain.Entities.Account domain)
+        {
+            var contract = new Account();
+
+            contract.Id = domain.Id;
+            contract.BrokerId = domain.BrokerId;
+            contract.Name = domain.Name;
+            contract.IsEnabled = domain.IsEnabled;
+            contract.Created = domain.Created.ToTimestamp();
+            contract.Modified = domain.Modified.ToTimestamp();
+
+            return contract;
         }
     }
 }

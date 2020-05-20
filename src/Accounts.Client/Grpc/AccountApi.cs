@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Swisschain.Exchange.Accounts.Client.Api;
 using Swisschain.Exchange.Accounts.Client.Common;
 using Swisschain.Exchange.Accounts.Client.Models.Account;
@@ -15,6 +17,35 @@ namespace Swisschain.Exchange.Accounts.Client.Grpc
             _client = new AccountsGrpc.AccountsGrpcClient(Channel);
         }
 
+        public async Task<IReadOnlyList<AccountModel>> GetAllAsync(IEnumerable<long> ids, string brokerId)
+        {
+            var request = new GetAllAccountsByIdsRequest();
+            request.Ids.AddRange(ids);
+            request.BrokerId = brokerId;
+
+            var response = await _client.GetAllAsync(request);
+
+            var result = response.Accounts.Select(x => new AccountModel(x)).ToList();
+
+            return result;
+        }
+
+        public async Task<AccountModel> GetAsync(long id, string brokerId)
+        {
+            var request = new GetAccountByIdRequest();
+            request.Id = id;
+            request.BrokerId = brokerId;
+
+            var response = await _client.GetAsync(request);
+
+            if (response.Account == null)
+                return null;
+
+            var result = new AccountModel(response.Account);
+
+            return result;
+        }
+
         public async Task<AccountModel> AddAsync(AccountAddModel accountAddModel)
         {
             var request = new AddAccountRequest();
@@ -27,7 +58,9 @@ namespace Swisschain.Exchange.Accounts.Client.Grpc
             if (response.Account == null)
                 return null;
 
-            return new AccountModel(response.Account);
+            var result = new AccountModel(response.Account);
+
+            return result;
         }
     }
 }
