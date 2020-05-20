@@ -29,5 +29,18 @@ namespace Swisschain.Exchange.Accounts.Client.Grpc
 
             return result;
         }
+
+        public async Task<WalletModel> GetAsync(long id, string brokerId)
+        {
+            var request = new GetWalletByIdRequest();
+            request.Id = id;
+            request.BrokerId = brokerId;
+
+            var response = await _client.GetAsync(request);
+
+            var result = new WalletModel(response.Wallet);
+
+            return result;
+        }
     }
 }

@@ -92,6 +92,15 @@
         <member name="F:Swisschain.Exchange.Accounts.Contract.GetWalletsResponse.WalletsFieldNumber">
             <summary>Field number for the "wallets" field.</summary>
         </member>
+        <member name="F:Swisschain.Exchange.Accounts.Contract.GetWalletByIdRequest.IdFieldNumber">
+            <summary>Field number for the "id" field.</summary>
+        </member>
+        <member name="F:Swisschain.Exchange.Accounts.Contract.GetWalletByIdRequest.BrokerIdFieldNumber">
+            <summary>Field number for the "brokerId" field.</summary>
+        </member>
+        <member name="F:Swisschain.Exchange.Accounts.Contract.GetWalletResponse.WalletFieldNumber">
+            <summary>Field number for the "wallet" field.</summary>
+        </member>
         <member name="F:Swisschain.Exchange.Accounts.Contract.Wallet.IdFieldNumber">
             <summary>Field number for the "id" field.</summary>
         </member>

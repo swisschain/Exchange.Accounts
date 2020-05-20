@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Swisschain.Exchange.Accounts.Client.Models.Wallet;
+﻿using System.Threading.Tasks;
+using Swisschain.Exchange.Accounts.Client.Models.Account;
 
 namespace Swisschain.Exchange.Accounts.Client.Api
 {
-    public interface IWalletApi
+    public interface IAccountApi
     {
-        Task<IReadOnlyList<WalletModel>> GetAllAsync(IEnumerable<long> ids, string brokerId);
+        Task<AccountModel> AddAsync(AccountAddModel accountAddModel);
     }
 }

@@ -8,6 +8,7 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 
 service WalletsGrpc {
+    rpc Get (GetWalletByIdRequest) returns (GetWalletResponse);
     rpc GetAll (GetAllWalletsByIdsRequest) returns (GetWalletsResponse);
 }
 
@@ -18,6 +19,15 @@ message GetAllWalletsByIdsRequest {
 
 message GetWalletsResponse {
     repeated Wallet wallets = 1;
+}
+
+message GetWalletByIdRequest {
+    int64 id = 1;
+    string brokerId = 2;
+}
+
+message GetWalletResponse {
+    Wallet wallet = 1;
 }
 
 message Wallet {

@@ -23,6 +23,8 @@ namespace TestClient
 
             var wallets = await client.Wallet.GetAllAsync(new long[] {1, 2, 3, 4}, brokerId);
 
+            var wallet = await client.Wallet.GetAsync(3, brokerId);
+
             Console.WriteLine("Finished!");
             Console.ReadLine();
         }

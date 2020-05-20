@@ -23,21 +23,44 @@ namespace Accounts.Grpc
 
             foreach (var domain in domains)
             {
-                var contract = new Wallet();
-
-                contract.Id = domain.Id;
-                contract.BrokerId = domain.BrokerId;
-                contract.AccountId = domain.AccountId;
-                contract.Name = domain.Name;
-                contract.Type = (WalletType)domain.Type;
-                contract.IsEnabled = domain.IsEnabled;
-                contract.Created = domain.Created.ToTimestamp();
-                contract.Modified = domain.Modified.ToTimestamp();
+                var contract = Map(domain);
 
                 response.Wallets.Add(contract);
             }
 
             return response;
+        }
+
+        public override async Task<GetWalletResponse> Get(GetWalletByIdRequest request, ServerCallContext context)
+        {
+            var domain = await _walletsService.GetByIdAsync(request.Id, request.BrokerId);
+
+            var response = new GetWalletResponse();
+
+            if (domain == null)
+                return response;
+
+            var contract = Map(domain);
+
+            response.Wallet = contract;
+
+            return response;
+        }
+
+        private Wallet Map(Domain.Entities.Wallet domain)
+        {
+            var contract = new Wallet();
+
+            contract.Id = domain.Id;
+            contract.BrokerId = domain.BrokerId;
+            contract.AccountId = domain.AccountId;
+            contract.Name = domain.Name;
+            contract.Type = (WalletType)domain.Type;
+            contract.IsEnabled = domain.IsEnabled;
+            contract.Created = domain.Created.ToTimestamp();
+            contract.Modified = domain.Modified.ToTimestamp();
+
+            return contract;
         }
     }
 }
