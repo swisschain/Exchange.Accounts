@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Swisschain.Exchange.Accounts.Client.Models.Wallet;
 
 namespace Swisschain.Exchange.Accounts.Client.Models.Account
 {
@@ -9,6 +12,8 @@ namespace Swisschain.Exchange.Accounts.Client.Models.Account
         public string BrokerId { get; set; }
 
         public string Name { get; set; }
+
+        public IReadOnlyList<WalletModel> Wallets = new List<WalletModel>();
 
         public bool IsEnabled { get; set; }
 
@@ -25,6 +30,7 @@ namespace Swisschain.Exchange.Accounts.Client.Models.Account
             Id = account.Id;
             BrokerId = account.BrokerId;
             Name = account.Name;
+            Wallets = account.Wallets.Select(x => new WalletModel(x)).ToList();
             IsEnabled = account.IsEnabled;
             Created = account.Created.ToDateTime();
             Modified = account.Modified.ToDateTime();

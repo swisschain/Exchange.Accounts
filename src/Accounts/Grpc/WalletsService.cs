@@ -47,7 +47,7 @@ namespace Accounts.Grpc
             return response;
         }
 
-        private Wallet Map(Domain.Entities.Wallet domain)
+        internal static Wallet Map(Domain.Entities.Wallet domain)
         {
             var contract = new Wallet();
 

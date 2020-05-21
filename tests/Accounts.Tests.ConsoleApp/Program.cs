@@ -17,11 +17,11 @@ namespace Accounts.Tests.ConsoleApp
 
             var client = new AccountsClient(new AccountsClientSettings { ServiceAddress = "http://localhost:5001" });
 
-            var accounts = await GetAllAccounts(client, brokerId);
+            //var accounts = await GetAllAccounts(client, brokerId);
 
-            var account = await GetAccount(client, brokerId);
+            //var account = await GetAccount(client, brokerId);
 
-            //await AddAccount(client, brokerId);
+            var account = await AddAccount(client, brokerId);
 
             //await GetAllWallets(client, brokerId);
 
@@ -49,7 +49,7 @@ namespace Accounts.Tests.ConsoleApp
         {
             var newAccount = new AccountAddModel();
             newAccount.BrokerId = brokerId;
-            newAccount.Name = "Exchange.Accounts.Tests";
+            newAccount.Name = "Exchange.Accounts.Tests 2";
             newAccount.IsEnabled = true;
 
             var account = await client.Account.AddAsync(newAccount);

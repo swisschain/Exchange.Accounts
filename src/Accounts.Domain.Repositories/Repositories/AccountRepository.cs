@@ -99,6 +99,8 @@ namespace Accounts.Domain.Persistence.Repositories
 
             query = query.Where(x => x.Id == id);
 
+            query = query.Include(x => x.Wallets);
+
             var entity = await query.SingleOrDefaultAsync();
 
             return _mapper.Map<Account>(entity);
@@ -173,6 +175,7 @@ namespace Accounts.Domain.Persistence.Repositories
             var existed = await query
                 .Where(x => x.Id == id)
                 .Where(x => x.BrokerId == brokerId)
+                .Include(x => x.Wallets)
                 .SingleOrDefaultAsync();
 
             return existed;

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Accounts.WebApi.Models.Wallet;
 
 namespace Accounts.WebApi.Models.Account
 {
@@ -7,6 +9,8 @@ namespace Accounts.WebApi.Models.Account
         public long Id { get; set; }
 
         public string Name { get; set; }
+
+        public IReadOnlyCollection<WalletModel> Wallets = new List<WalletModel>();
 
         public bool IsEnabled { get; set; }
 

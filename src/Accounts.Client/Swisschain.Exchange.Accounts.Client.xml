@@ -49,6 +49,9 @@
         <member name="F:Swisschain.Exchange.Accounts.Contract.Account.NameFieldNumber">
             <summary>Field number for the "name" field.</summary>
         </member>
+        <member name="F:Swisschain.Exchange.Accounts.Contract.Account.WalletsFieldNumber">
+            <summary>Field number for the "wallets" field.</summary>
+        </member>
         <member name="F:Swisschain.Exchange.Accounts.Contract.Account.IsEnabledFieldNumber">
             <summary>Field number for the "is_enabled" field.</summary>
         </member>

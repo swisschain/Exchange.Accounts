@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using MoreLinq;
+using System.Threading.Tasks;
 using Accounts.Domain.Services;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
@@ -58,27 +59,21 @@ namespace Accounts.Grpc
 
             var response = new AddAccountResponse();
 
-            var contract = new Account();
-            
-            contract.Id = domain.Id;
-            contract.BrokerId = domain.BrokerId;
-            contract.Name = domain.Name;
-            contract.IsEnabled = domain.IsEnabled;
-            contract.Created = Timestamp.FromDateTime(domain.Created);
-            contract.Modified = Timestamp.FromDateTime(domain.Modified);
+            var contract = Map(domain);
 
             response.Account = contract;
 
             return response;
         }
 
-        private Account Map(Domain.Entities.Account domain)
+        internal static Account Map(Domain.Entities.Account domain)
         {
             var contract = new Account();
 
             contract.Id = domain.Id;
             contract.BrokerId = domain.BrokerId;
             contract.Name = domain.Name;
+            domain.Wallets.ForEach(x => contract.Wallets.Add(WalletsService.Map(x)));
             contract.IsEnabled = domain.IsEnabled;
             contract.Created = domain.Created.ToTimestamp();
             contract.Modified = domain.Modified.ToTimestamp();
