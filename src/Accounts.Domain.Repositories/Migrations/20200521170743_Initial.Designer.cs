@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Accounts.Domain.Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200519213212_Initial")]
+    [Migration("20200521170743_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,7 +55,7 @@ namespace Accounts.Domain.Persistence.Migrations
                     b.HasIndex("BrokerId", "Name")
                         .IsUnique();
 
-                    b.ToTable("accounts");
+                    b.ToTable("account");
                 });
 
             modelBuilder.Entity("Accounts.Domain.Persistence.Entities.WalletEntity", b =>
@@ -96,7 +96,7 @@ namespace Accounts.Domain.Persistence.Migrations
 
                     b.HasIndex("AccountId");
 
-                    b.ToTable("wallets");
+                    b.ToTable("wallet");
                 });
 
             modelBuilder.Entity("Accounts.Domain.Persistence.Entities.WalletEntity", b =>

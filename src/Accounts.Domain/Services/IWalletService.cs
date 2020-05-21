@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Threading.Tasks;
 using Accounts.Domain.Entities;
+using Accounts.Domain.Entities.Enums;
 
 namespace Accounts.Domain.Services
 {
@@ -11,7 +12,7 @@ namespace Accounts.Domain.Services
 
         Task<IReadOnlyList<Wallet>> GetAllAsync(IEnumerable<long> ids, string brokerId);
 
-        Task<IReadOnlyList<Wallet>> GetAllAsync(string brokerId, string name, bool? isEnabled,
+        Task<IReadOnlyList<Wallet>> GetAllAsync(string brokerId, long accountId, string name, WalletType type, bool? isEnabled,
             ListSortDirection sortOrder = ListSortDirection.Ascending, long cursor = 0, int limit = 50);
 
         Task<Wallet> GetByIdAsync(long id, string brokerId);

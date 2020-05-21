@@ -38,7 +38,8 @@ namespace Accounts.WebApi
 
             var brokerId = User.GetTenantId();
 
-            var wallets = await _walletService.GetAllAsync(brokerId, request.Name, request.IsEnabled, sortOrder, request.Cursor, request.Limit);
+            var wallets = await _walletService.GetAllAsync(brokerId, request.AccountId, request.Name,
+                (Domain.Entities.Enums.WalletType)request.Type, request.IsEnabled, sortOrder, request.Cursor, request.Limit);
 
             var result = _mapper.Map<WalletModel[]>(wallets);
 

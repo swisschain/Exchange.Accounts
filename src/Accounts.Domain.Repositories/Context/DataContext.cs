@@ -48,7 +48,7 @@ namespace Accounts.Domain.Persistence.Context
         private static void AccountEntity(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AccountEntity>()
-                .ToTable("accounts")
+                .ToTable("account")
                 .HasKey(c => new { c.Id });
 
             modelBuilder.Entity<AccountEntity>()
@@ -78,14 +78,18 @@ namespace Accounts.Domain.Persistence.Context
             modelBuilder.Entity<AccountEntity>()
                 .HasIndex(x => x.BrokerId);
 
+
             modelBuilder.Entity<AccountEntity>()
-                .HasIndex(x => new { x.BrokerId, x.Name }).IsUnique();
+                .HasIndex(x => new { x.BrokerId });
+
+            modelBuilder.Entity<AccountEntity>()
+                .HasIndex(x => new { x.Name });
         }
 
         private static void WalletEntity(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<WalletEntity>()
-                .ToTable("wallets")
+                .ToTable("wallet")
                 .HasKey(c => new { c.Id });
 
             modelBuilder.Entity<WalletEntity>()
@@ -115,8 +119,14 @@ namespace Accounts.Domain.Persistence.Context
                 .IsRequired();
 
 
-            modelBuilder.Entity<AccountEntity>()
-                .HasIndex(x => new { x.BrokerId, x.Name }).IsUnique();
+            modelBuilder.Entity<WalletEntity>()
+                .HasIndex(x => new { x.BrokerId });
+
+            modelBuilder.Entity<WalletEntity>()
+                .HasIndex(x => new { x.Name });
+
+            modelBuilder.Entity<WalletEntity>()
+                .HasIndex(x => new { x.Type });
         }
     }
 }

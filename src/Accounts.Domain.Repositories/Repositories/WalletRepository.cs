@@ -52,7 +52,7 @@ namespace Accounts.Domain.Persistence.Repositories
             return _mapper.Map<List<Wallet>>(data);
         }
 
-        public async Task<IReadOnlyList<Wallet>> GetAllAsync(string brokerId, string name, bool? isEnabled,
+        public async Task<IReadOnlyList<Wallet>> GetAllAsync(string brokerId, long accountId, string name, WalletType type, bool? isEnabled,
             ListSortDirection sortOrder = ListSortDirection.Ascending, long cursor = 0, int limit = 50)
         {
             await using var context = _connectionFactory.CreateDataContext();
@@ -61,11 +61,16 @@ namespace Accounts.Domain.Persistence.Repositories
 
             query = query.Where(x => x.BrokerId.ToUpper() == brokerId.ToUpper());
 
+            query = query.Where(x => x.AccountId == accountId);
+
             if (!string.IsNullOrEmpty(name))
                 query = query.Where(x => EF.Functions.ILike(x.Name, $"%{name}%"));
 
             if (isEnabled.HasValue)
                 query = query.Where(x => x.IsEnabled == isEnabled.Value);
+
+            if (type != WalletType.None)
+                query = query.Where(x => x.Type == type);
 
             if (sortOrder == ListSortDirection.Ascending)
             {

@@ -12,7 +12,7 @@ namespace Accounts.Domain.Persistence.Migrations
                 name: "accounts");
 
             migrationBuilder.CreateTable(
-                name: "accounts",
+                name: "account",
                 schema: "accounts",
                 columns: table => new
                 {
@@ -26,11 +26,11 @@ namespace Accounts.Domain.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_accounts", x => x.Id);
+                    table.PrimaryKey("PK_account", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "wallets",
+                name: "wallet",
                 schema: "accounts",
                 columns: table => new
                 {
@@ -46,44 +46,44 @@ namespace Accounts.Domain.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_wallets", x => x.Id);
+                    table.PrimaryKey("PK_wallet", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_wallets_accounts_AccountId",
+                        name: "FK_wallet_account_AccountId",
                         column: x => x.AccountId,
                         principalSchema: "accounts",
-                        principalTable: "accounts",
+                        principalTable: "account",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_accounts_BrokerId",
+                name: "IX_account_BrokerId",
                 schema: "accounts",
-                table: "accounts",
+                table: "account",
                 column: "BrokerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_accounts_BrokerId_Name",
+                name: "IX_account_BrokerId_Name",
                 schema: "accounts",
-                table: "accounts",
+                table: "account",
                 columns: new[] { "BrokerId", "Name" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_wallets_AccountId",
+                name: "IX_wallet_AccountId",
                 schema: "accounts",
-                table: "wallets",
+                table: "wallet",
                 column: "AccountId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "wallets",
+                name: "wallet",
                 schema: "accounts");
 
             migrationBuilder.DropTable(
-                name: "accounts",
+                name: "account",
                 schema: "accounts");
         }
     }
