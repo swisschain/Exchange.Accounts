@@ -136,9 +136,6 @@ namespace Accounts.Domain.Persistence.Repositories
 
             var entity = await GetAsync(wallet.Id, wallet.BrokerId, context);
 
-            if (entity.Type != WalletType.Api && entity.Type != WalletType.Hft)
-                throw new ArgumentException($"Wallet with type '{wallet.Type}' can't be updated.");
-
             // save fields that has not be updated
             var created = entity.Created;
             var accountId = entity.AccountId;
