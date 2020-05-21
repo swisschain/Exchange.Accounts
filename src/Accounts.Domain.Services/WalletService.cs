@@ -26,7 +26,7 @@ namespace Accounts.Domain.Services
             return _walletRepository.GetAllAsync(ids, brokerId);
         }
 
-        public Task<IReadOnlyList<Wallet>> GetAllAsync(string brokerId, long accountId, string name, WalletType type, bool? isEnabled,
+        public Task<IReadOnlyList<Wallet>> GetAllAsync(string brokerId, long accountId, string name, WalletType? type, bool? isEnabled,
             ListSortDirection sortOrder = ListSortDirection.Ascending, long cursor = 0, int limit = 50)
         {
             return _walletRepository.GetAllAsync(brokerId, accountId, name, type, isEnabled, sortOrder, cursor, limit);
