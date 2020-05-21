@@ -12,6 +12,6 @@ namespace Accounts.WebApi.Models.Wallet
 
         public bool? IsEnabled { get; set; }
 
-        public WalletType? Type { get; set; }
+        public WalletType Type { get; set; }
     }
 }

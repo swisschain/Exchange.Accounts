@@ -52,7 +52,7 @@ namespace Accounts.Domain.Persistence.Repositories
             return _mapper.Map<List<Wallet>>(data);
         }
 
-        public async Task<IReadOnlyList<Wallet>> GetAllAsync(string brokerId, long accountId, string name, WalletType? type, bool? isEnabled,
+        public async Task<IReadOnlyList<Wallet>> GetAllAsync(string brokerId, long accountId, string name, WalletType type, bool? isEnabled,
             ListSortDirection sortOrder = ListSortDirection.Ascending, long cursor = 0, int limit = 50)
         {
             await using var context = _connectionFactory.CreateDataContext();
@@ -69,7 +69,7 @@ namespace Accounts.Domain.Persistence.Repositories
             if (isEnabled.HasValue)
                 query = query.Where(x => x.IsEnabled == isEnabled.Value);
 
-            if (type != null)
+            if (type != WalletType.None)
                 query = query.Where(x => x.Type == type);
 
             if (sortOrder == ListSortDirection.Ascending)
