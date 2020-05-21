@@ -15,13 +15,16 @@ namespace Accounts.Tests.ConsoleApp
 
             var brokerId = "83829aa1-5888-45e4-997c-b133e58b7ab8";
 
-            var client = new AccountsClient(new AccountsClientSettings { ServiceAddress = "http://localhost:5001" });
+            //var url = "http://localhost:5001";
+            var url = "http://accounts.exchange.svc.cluster.local:5001";
 
-            //var accounts = await GetAllAccounts(client, brokerId);
+            var client = new AccountsClient(new AccountsClientSettings { ServiceAddress = url });
+
+            var accounts = await GetAllAccounts(client, brokerId);
 
             //var account = await GetAccount(client, brokerId);
 
-            var account = await AddAccount(client, brokerId);
+            //var account = await AddAccount(client, brokerId);
 
             //await GetAllWallets(client, brokerId);
 
