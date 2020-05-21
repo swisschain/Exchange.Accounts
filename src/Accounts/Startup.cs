@@ -57,6 +57,7 @@ namespace Accounts
         {
             base.RegisterEndpoints(endpoints);
 
+            endpoints.MapGrpcService<MonitoringService>();
             endpoints.MapGrpcService<AccountsService>();
             endpoints.MapGrpcService<WalletsService>();
         }
