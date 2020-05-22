@@ -63,17 +63,34 @@ namespace Accounts.Domain.Persistence.Migrations
                 column: "BrokerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_account_BrokerId_Name",
+                name: "IX_account_Name",
                 schema: "accounts",
                 table: "account",
-                columns: new[] { "BrokerId", "Name" },
-                unique: true);
+                column: "Name");
 
             migrationBuilder.CreateIndex(
                 name: "IX_wallet_AccountId",
                 schema: "accounts",
                 table: "wallet",
                 column: "AccountId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_wallet_BrokerId",
+                schema: "accounts",
+                table: "wallet",
+                column: "BrokerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_wallet_Name",
+                schema: "accounts",
+                table: "wallet",
+                column: "Name");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_wallet_Type",
+                schema: "accounts",
+                table: "wallet",
+                column: "Type");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

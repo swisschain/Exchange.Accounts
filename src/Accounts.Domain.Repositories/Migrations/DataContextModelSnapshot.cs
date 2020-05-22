@@ -50,8 +50,7 @@ namespace Accounts.Domain.Persistence.Migrations
 
                     b.HasIndex("BrokerId");
 
-                    b.HasIndex("BrokerId", "Name")
-                        .IsUnique();
+                    b.HasIndex("Name");
 
                     b.ToTable("account");
                 });
@@ -93,6 +92,12 @@ namespace Accounts.Domain.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AccountId");
+
+                    b.HasIndex("BrokerId");
+
+                    b.HasIndex("Name");
+
+                    b.HasIndex("Type");
 
                     b.ToTable("wallet");
                 });
