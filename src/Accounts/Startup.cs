@@ -34,6 +34,8 @@ namespace Accounts
                     ValidatorOptions.CascadeMode = CascadeMode.StopOnFirstFailure;
                     options.RegisterValidatorsFromAssembly(Assembly.GetEntryAssembly());
                 });
+
+            services.AddGrpcReflection();
         }
 
         protected override void ConfigureExt(IApplicationBuilder app, IWebHostEnvironment env)
@@ -56,6 +58,8 @@ namespace Accounts
         protected override void RegisterEndpoints(IEndpointRouteBuilder endpoints)
         {
             base.RegisterEndpoints(endpoints);
+
+            endpoints.MapGrpcReflectionService();
 
             endpoints.MapGrpcService<MonitoringService>();
             endpoints.MapGrpcService<AccountsService>();
